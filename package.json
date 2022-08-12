@@ -1,0 +1,27 @@
+{
+	"name": "@dzikri/vite-for-wp-monorepo",
+	"description": "Vite integration helpers for WordPress, the monorepo.",
+	"author": "Human Made Ltd",
+	"private": "true",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:/kucrut/wp-vite.git"
+	},
+	"scripts": {
+		"eslint:check": "eslint --ext .cjs,.js,.ts .",
+		"prettier:check": "prettier --check .",
+		"lint": "npm run prettier:check && npm run eslint:check"
+	},
+	"workspaces": [
+		"js"
+	],
+	"devDependencies": {
+		"@babel/core": "^7.18.10",
+		"@typescript-eslint/eslint-plugin": "^5.33.0",
+		"@typescript-eslint/parser": "^5.33.0",
+		"@wordpress/eslint-plugin": "^12.9.0",
+		"eslint": "^8.21.0",
+		"prettier": "npm:wp-prettier@^2.6.2",
+		"typescript": "^4.7.4"
+	}
+}

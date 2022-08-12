@@ -1,0 +1,29 @@
+{
+	"arrowParens": "avoid",
+	"bracketSpacing": true,
+	"parenSpacing": true,
+	"printWidth": 120,
+	"quoteProps": "consistent",
+	"semi": true,
+	"singleQuote": true,
+	"tabWidth": 4,
+	"trailingComma": "all",
+	"useTabs": true,
+	"plugins": [ "./node_modules/eslint-plugin-prettier" ],
+	"overrides": [
+		{
+			"files": [ "*.json" ],
+			"options": {
+				"singleQuote": false
+			}
+		},
+		{
+			"files": [ "*.yaml", "*.yml" ],
+			"options": {
+				"singleQuote": false,
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		}
+	]
+}

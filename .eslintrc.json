@@ -1,0 +1,16 @@
+{
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@wordpress/eslint-plugin/custom",
+		"plugin:@wordpress/eslint-plugin/esnext",
+		"plugin:@wordpress/eslint-plugin/jsdoc"
+	],
+	"parser": "@typescript-eslint/parser",
+	"plugins": [ "@typescript-eslint" ],
+	"rules": {
+		"arrow-parens": [ "error", "as-needed" ],
+		"camelcase": "off",
+		"quote-props": [ "error", "consistent" ],
+		"jsdoc/valid-types": "off"
+	}
+}

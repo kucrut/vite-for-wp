@@ -1,0 +1,28 @@
+{
+	"name": "kucrut/vite-for-wp",
+	"description": "Vite integration helpers for WordPress.",
+	"type": "library",
+	"license": "GPL-v2",
+	"autoload": {
+		"files": [
+			"src/namespace.php"
+		]
+	},
+	"authors": [
+		{
+			"name": "Dzikri Aziz"
+		}
+	],
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^2.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+	},
+	"scripts": {
+		"lint": "phpcs"
+	}
+}
