@@ -104,10 +104,11 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
 	}
 
 	$attribute = 'type="module"';
+	$script_type_regex = '/type=(["\'])([\w\/]+)(["\'])/';
 
-	if ( strpos( $tag, 'type=' ) !== false ) {
+	if ( preg_match( $script_type_regex, $tag ) ) {
 		// Pre-HTML5.
-		$tag = preg_replace( '/type=(["\'])([\w\/]+)(["\'])/', $attribute, $tag );
+		$tag = preg_replace( $script_type_regex, $attribute, $tag );
 	} else {
 		$tag = preg_replace( '#(<script)(.*></script>)#', sprintf( '$1 %s$2', $attribute ), $tag );
 	}
