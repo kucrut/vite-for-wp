@@ -212,10 +212,22 @@ function load_development_asset( object $manifest, string $entry, array $options
 		return null;
 	}
 
-	return [
+	$assets = [
 		'scripts' => [ $options['handle'] ],
 		'styles' => $options['css-dependencies'],
 	];
+
+	/**
+	 * Filter registered development assets
+	 *
+	 * @param array  $assets   Registered assets.
+	 * @param object $manifest Manifest object.
+	 * @param string $entry    Entrypoint file.
+	 * @param array  $options  Enqueue options.
+	 */
+	$assets = apply_filters( 'vite_for_wp__development_assets', $assets, $manifest, $entry, $options );
+
+	return $assets;
 }
 
 /**
