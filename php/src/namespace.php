@@ -249,8 +249,6 @@ function load_development_asset( object $manifest, string $entry, array $options
  * @param string $entry    Entrypoint to enqueue.
  * @param array  $options  Enqueue options.
  *
- * @todo Refactor src generator.
- *
  * @return array|null Array containing registered scripts & styles or NULL if there was an error.
  */
 function load_production_asset( object $manifest, string $entry, array $options ): ?array {
