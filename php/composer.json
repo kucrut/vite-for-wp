@@ -5,7 +5,7 @@
 	"license": "GPL-v2",
 	"autoload": {
 		"files": [
-			"src/namespace.php"
+			"src/vite-for-wp.php"
 		]
 	},
 	"authors": [
