@@ -62,6 +62,16 @@ function get_manifest( string $manifest_dir ): object {
 		throw new Exception( sprintf( '[Vite] Manifest %s contains invalid data.', $manifest_path ) );
 	}
 
+	/**
+	 * Filter manifest data
+	 *
+	 * @param array  $manifest      Manifest data.
+	 * @param string $manifest_dir  Manifest directory path.
+	 * @param string $manifest_path Manifest file path.
+	 * @param bool   $is_dev        Whether this is a manifest for development assets.
+	 */
+	$manifest = apply_filters( 'vite_for_wp__manifest_data', $manifest, $manifest_dir, $manifest_path );
+
 	$manifests[ $manifest_path ] = (object) [
 		'data' => $manifest,
 		'dir' => $manifest_dir,
