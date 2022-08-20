@@ -6,12 +6,10 @@ export default defineBuildConfig( {
 		{
 			name: 'plugins/index',
 			input: './src/plugins/index',
-			// outDir: './dist/plugins',
 		},
 		{
 			name: 'utils/index',
 			input: './src/utils/index',
-			// outDir: './dist/utils',
 		},
 	],
 	clean: true,
