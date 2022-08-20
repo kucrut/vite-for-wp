@@ -4,10 +4,10 @@
 
 ### JavaScript
 
-From your JS package, add the dependency:
+From your JS package, add the dependencies:
 
 ```sh
-npm add -D @kucrut/vite-for-wp
+npm add -D vite @kucrut/vite-for-wp
 ```
 
 Create `vite.config.js`:
