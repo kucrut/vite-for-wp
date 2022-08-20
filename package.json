@@ -1,7 +1,7 @@
 {
-	"name": "@dzikri/vite-for-wp-monorepo",
+	"name": "@kucrut/vite-for-wp-monorepo",
 	"description": "Vite integration helpers for WordPress, the monorepo.",
-	"author": "Human Made Ltd",
+	"author": "Dzikri Aziz",
 	"private": "true",
 	"repository": {
 		"type": "git",
