@@ -1,5 +1,4 @@
-import type { Plugin } from 'vite';
-
+import { mergeConfig, type Plugin } from 'vite';
 import { choose_port } from '../utils/';
 
 export default function dev_server_config(): Plugin {
@@ -16,13 +15,17 @@ export default function dev_server_config(): Plugin {
 				host = '0.0.0.0';
 			}
 
+			const hmr_protocol = rest_server.https ? 'wss' : 'ws';
+			const server_protocol = rest_server.https ? 'https' : 'http';
+
 			// Ensure chosen port is available because we need to enable strictPort below.
 			// If the chosen port is already in use, a free one will be selected.
 			port = await choose_port( { host, port } );
-			const origin = `http://${ host }:${ port }`;
 
-			return {
-				...config,
+			// This will be used by the PHP helper.
+			const origin = `${ server_protocol }://${ host }:${ port }`;
+
+			return mergeConfig( config, {
 				server: {
 					...rest_server,
 					host,
@@ -32,10 +35,10 @@ export default function dev_server_config(): Plugin {
 					hmr: {
 						port,
 						host,
-						protocol: 'ws',
+						protocol: hmr_protocol,
 					},
 				},
-			};
+			} );
 		},
 	};
 }
