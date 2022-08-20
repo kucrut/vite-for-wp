@@ -68,3 +68,11 @@ add_action( 'wp_enqueue_scripts', function (): void {
 ```
 
 To only register the asset (and enqueue it later), use `Vite\register_asset()`. It accepts same parameters as `Vite\enqueue_asset()`.
+
+## Limitations
+
+Currently, this package doesn't provide HMR support for building editor blocks yet.
+
+## License
+
+[GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
