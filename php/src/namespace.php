@@ -254,7 +254,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 		return null;
 	}
 
-	$registered_assets = [
+	$assets = [
 		'scripts' => [],
 		'styles' => [],
 	];
@@ -267,25 +267,33 @@ function load_production_asset( object $manifest, string $entry, array $options 
 		// Don't worry about browser caching as the version is embedded in the file name.
 		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		if ( wp_register_script( $options['handle'], $src, $options['dependencies'], null, $options['in-footer'] ) ) {
-			$registered_assets['scripts'][] = $options['handle'];
+			$assets['scripts'][] = $options['handle'];
 		}
 	}
 
-	if ( empty( $item->css ) ) {
-		return $registered_assets;
-	}
+	if ( ! empty( $item->css ) ) {
+		foreach ( $item->css as $index => $css_file_path ) {
+			$style_handle = "{$options['handle']}-{$index}";
 
-	foreach ( $item->css as $index => $css_file_path ) {
-		$style_handle = "{$options['handle']}-{$index}";
-
-		// Don't worry about browser caching as the version is embedded in the file name.
-		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-		if ( wp_register_style( $style_handle, "{$url}/{$css_file_path}", $options['css-dependencies'], null, $options['css-media'] ) ) {
-			$registered_assets['styles'][] = $style_handle;
+			// Don't worry about browser caching as the version is embedded in the file name.
+			// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			if ( wp_register_style( $style_handle, "{$url}/{$css_file_path}", $options['css-dependencies'], null, $options['css-media'] ) ) {
+				$assets['styles'][] = $style_handle;
+			}
 		}
 	}
 
-	return $registered_assets;
+	/**
+	 * Filter registered production assets
+	 *
+	 * @param array  $assets   Registered assets.
+	 * @param object $manifest Manifest object.
+	 * @param string $entry    Entrypoint file.
+	 * @param array  $options  Enqueue options.
+	 */
+	$assets = apply_filters( 'vite_for_wp__production_assets', $assets, $manifest, $entry, $options );
+
+	return $assets;
 }
 
 /**
@@ -336,11 +344,11 @@ function register_asset( string $manifest_dir, string $entry, array $options ): 
 	}
 
 	$options = parse_options( $options );
-	$registered_assets = $manifest->is_dev
+	$assets = $manifest->is_dev
 		? load_development_asset( $manifest, $entry, $options )
 		: load_production_asset( $manifest, $entry, $options );
 
-	return $registered_assets;
+	return $assets;
 }
 
 /**
@@ -357,9 +365,9 @@ function register_asset( string $manifest_dir, string $entry, array $options ): 
  * @return bool
  */
 function enqueue_asset( string $manifest_dir, string $entry, array $options ): bool {
-	$registered_assets = register_asset( $manifest_dir, $entry, $options );
+	$assets = register_asset( $manifest_dir, $entry, $options );
 
-	if ( is_null( $registered_assets ) ) {
+	if ( is_null( $assets ) ) {
 		return false;
 	}
 
@@ -368,7 +376,7 @@ function enqueue_asset( string $manifest_dir, string $entry, array $options ): b
 		'styles' => 'wp_enqueue_style',
 	];
 
-	foreach ( $registered_assets as $group => $handles ) {
+	foreach ( $assets as $group => $handles ) {
 		$func = $map[ $group ];
 
 		foreach ( $handles as $handle ) {
