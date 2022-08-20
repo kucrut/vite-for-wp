@@ -53,7 +53,7 @@ Enqueue the script:
 
 use Kucrut\Vite;
 
-add_action( 'wp_enqueue_scripts', function () {
+add_action( 'wp_enqueue_scripts', function (): void {
 	Vite\enqueue_asset(
 		__DIR__ . 'js/dist',
 		'src/main.ts',
@@ -66,3 +66,5 @@ add_action( 'wp_enqueue_scripts', function () {
 	);
 } );
 ```
+
+To only register the asset (and enqueue it later), use `Vite\register_asset()`. It accepts same parameters as `Vite\enqueue_asset()`.
