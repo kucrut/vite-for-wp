@@ -1,5 +1,7 @@
 # Vite for WordPress
 
+[Vite](https://vitejs.dev) integration for WordPress plugins and themes development.
+
 ## Usage
 
 ### JavaScript
@@ -18,7 +20,7 @@ import create_config from '@kucrut/vite-for-wp';
 export default create_config( 'js/src/main.ts', 'js/dist' );
 ```
 
-Pass a configuration object as the third parameter if you need to add plugins, use https, etc:
+Pass a [configuration object](https://vitejs.dev/config/) as the third parameter if you need to add plugins, use https, etc:
 
 ```js
 import { readFileSync } from 'node:fs';

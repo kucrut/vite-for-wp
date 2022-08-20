@@ -1,6 +1,6 @@
 {
 	"name": "kucrut/vite-for-wp",
-	"description": "Vite integration helpers for WordPress.",
+	"description": "Vite integration for WordPress plugins and themes development.",
 	"type": "library",
 	"license": "GPL-v2",
 	"autoload": {

@@ -1,7 +1,7 @@
 {
 	"name": "@kucrut/vite-for-wp",
 	"version": "0.1.0",
-	"description": "Vite integration helpers for WordPress.",
+	"description": "Vite integration for WordPress plugins and themes development.",
 	"scripts": {
 		"build": "unbuild",
 		"dev": "unbuild --stub"
