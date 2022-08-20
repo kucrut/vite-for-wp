@@ -206,6 +206,8 @@ function load_development_asset( object $manifest, string $entry, array $options
 
 	filter_script_tag( $options['handle'] );
 
+	// This is a development script, browsers shouldn't cache it.
+	// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	if ( ! wp_register_script( $options['handle'], $src, $dependencies, null, $options['in-footer'] ) ) {
 		return null;
 	}
@@ -250,6 +252,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	if ( ! $options['css-only'] ) {
 		filter_script_tag( $options['handle'] );
 
+		// Don't worry about browser caching as the version is embedded in the file name.
 		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		if ( wp_register_script( $options['handle'], $src, $options['dependencies'], null, $options['in-footer'] ) ) {
 			$registered_assets['scripts'][] = $options['handle'];
@@ -263,6 +266,8 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	foreach ( $item->css as $index => $css_file_path ) {
 		$style_handle = "{$options['handle']}-{$index}";
 
+		// Don't worry about browser caching as the version is embedded in the file name.
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		if ( wp_register_style( $style_handle, "{$url}/{$css_file_path}", $options['css-dependencies'], null, $options['css-media'] ) ) {
 			$registered_assets['styles'][] = $style_handle;
 		}
