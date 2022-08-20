@@ -18,6 +18,26 @@ import create_config from '@kucrut/vite-for-wp';
 export default create_config( 'js/src/main.ts', 'js/dist' );
 ```
 
+Pass a configuration object as the third parameter if you need to add plugins, use https, etc:
+
+```js
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import create_config from '@kucrut/vite-for-wp';
+import react from '@vitejs/plugin-react';
+
+export default create_config( 'js/src/main.ts', 'js/dist', {
+	plugins: [ react() ],
+	server: {
+		host: 'mydomain.com',
+		https: {
+			cert: readFileSync( 'path/to/cert.pem' ),
+			key: readFileSync( 'path/to/key.pem' ),
+		},
+	},
+} );
+```
+
 ### Plugin/theme
 
 Add the composer dependency:
