@@ -2,18 +2,19 @@
 	"name": "@kucrut/vite-for-wp",
 	"version": "0.1.0",
 	"description": "Vite integration for WordPress plugins and themes development.",
-	"scripts": {
-		"build": "unbuild",
-		"dev": "unbuild --stub"
-	},
 	"author": "Dzikri Aziz",
 	"license": "MIT",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
-	"files": [
-		"dist"
-	],
+	"devDependencies": {
+		"@types/node": "^18.0.0",
+		"unbuild": "^0.8.8",
+		"vite": "^3.0.0"
+	},
+	"peerDependencies": {
+		"vite": "^3.0.0"
+	},
 	"exports": {
 		".": {
 			"import": "./dist/index.mjs",
@@ -31,12 +32,11 @@
 			"types": "./dist/utils/index.d.ts"
 		}
 	},
-	"devDependencies": {
-		"@types/node": "^18.0.0",
-		"unbuild": "^0.8.8",
-		"vite": "^3.0.0"
-	},
-	"peerDependencies": {
-		"vite": "^3.0.0"
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"dev": "unbuild --stub"
 	}
 }

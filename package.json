@@ -5,16 +5,13 @@
 	"private": "true",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:/kucrut/wp-vite.git"
+		"url": "git@github.com:/kucrut/vite-for-wp.git"
 	},
 	"scripts": {
 		"eslint:check": "eslint --ext .cjs,.js,.ts .",
 		"prettier:check": "prettier --check .",
 		"lint": "npm run prettier:check && npm run eslint:check"
 	},
-	"workspaces": [
-		"js"
-	],
 	"devDependencies": {
 		"@babel/core": "^7.18.10",
 		"@typescript-eslint/eslint-plugin": "^5.33.0",
