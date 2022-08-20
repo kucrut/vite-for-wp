@@ -7,3 +7,4 @@ node_modules/**
 package-lock.json
 php/vendor/**
 pnpm-lock.yaml
+LICENSE
