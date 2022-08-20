@@ -38,6 +38,17 @@ export default create_config( 'js/src/main.ts', 'js/dist', {
 } );
 ```
 
+Lastly, add `dev` and `build` scripts to your `package.json`:
+
+```json
+{
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite"
+	}
+}
+```
+
 ### Plugin/theme
 
 Add the composer dependency:
