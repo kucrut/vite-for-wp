@@ -69,7 +69,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --recursive --silent
+        run: pnpm install --silent
 
       - name: Lint
         run: pnpm lint
