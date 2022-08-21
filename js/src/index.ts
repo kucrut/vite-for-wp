@@ -10,6 +10,8 @@ console.log( 'boo' );
 type ExtraConfig = Record< string, any >;
 type InputOption = ResolvedConfig[ 'build' ][ 'rollupOptions' ][ 'input' ];
 
+console.log( 'hoo' );
+
 /**
  * Create vite config
  *
