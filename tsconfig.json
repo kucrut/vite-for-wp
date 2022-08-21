@@ -1,5 +1,5 @@
 {
-	"include": [ "src" ],
+	"include": [ "src/**/*.d.ts", "src/**/*.ts", "src/**/*.js" ],
 	"compilerOptions": {
 		"baseUrl": "./",
 		"declaration": true,
