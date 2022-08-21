@@ -6,7 +6,7 @@ env:
 
 jobs:
   lint_php:
-    name: Lint PHP package
+    name: Lint PHP files
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +36,7 @@ jobs:
           composer lint
 
   lint_js:
-    name: Lint JS package
+    name: Lint JS files
     runs-on: ubuntu-latest
 
     steps:
