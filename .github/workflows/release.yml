@@ -26,11 +26,13 @@ jobs:
         with:
           run_install: false
 
+      - run: pnpm install --frozen-lockfile --silent
+      - run: pnpm build
+
       - name: Create release pull request or publish to NPM
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
