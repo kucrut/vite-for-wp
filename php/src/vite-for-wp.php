@@ -1,6 +1,6 @@
 <?php
 /**
- * Vite integration for WordPress
+ * Vite integration for WordPress Yo!
  *
  * @package ViteForWp
  */
@@ -24,7 +24,7 @@ const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
  *
  * @return object Object containing manifest type and data.
  */
-function get_manifest( string $manifest_dir ): object {
+function get_manifest( string $manifest_dir): object {
 	// Avoid repeatedly opening & decoding the same file.
 	static $manifests = [];
 
