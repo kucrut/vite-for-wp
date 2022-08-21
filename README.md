@@ -12,7 +12,7 @@ Add the composer dependency:
 composer require kucrut/vite-for-wp
 ```
 
-If your plugin/theme doesn't use composer, feel free to copy [the main file](php/src/vite-for-wp.php) and require it.
+If your plugin/theme doesn't use composer, feel free to copy [the main file](vite-for-wp.php) and require it.
 
 Enqueue the script:
 

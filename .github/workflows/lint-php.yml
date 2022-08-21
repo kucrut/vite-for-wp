@@ -1,11 +1,10 @@
 on:
   pull_request:
     paths:
-      - "php/**"
-
-defaults:
-  run:
-    working-directory: php
+      - "vite-for-wp.php"
+      - "composer.json"
+      - "composer.lock"
+      - "phpcs.xml.dist"
 
 jobs:
   lint_php:
