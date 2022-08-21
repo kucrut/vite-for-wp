@@ -3,6 +3,7 @@
 	"description": "Vite integration helpers for WordPress, the monorepo.",
 	"author": "Dzikri Aziz",
 	"private": "true",
+	"packageManager": "pnpm@7.9.3",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:/kucrut/vite-for-wp.git"
