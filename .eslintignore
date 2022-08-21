@@ -1,4 +1,5 @@
 .pnpm-store
 **/dist/**
 **/node_modules/**
+**/vendor/**
 php/**

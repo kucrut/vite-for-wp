@@ -1,27 +1,59 @@
 {
-	"name": "@kucrut/vite-for-wp-monorepo",
-	"description": "Vite integration helpers for WordPress, the monorepo.",
+	"name": "@kucrut/vite-for-wp",
+	"version": "0.0.0",
+	"description": "Vite integration for WordPress plugins and themes development.",
 	"author": "Dzikri Aziz",
-	"private": "true",
+	"license": "MIT",
 	"packageManager": "pnpm@7.9.3",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:/kucrut/vite-for-wp.git"
 	},
-	"scripts": {
-		"eslint:check": "eslint --ext .cjs,.js,.ts .",
-		"prettier:check": "prettier --check .",
-		"lint": "npm run prettier:check && npm run eslint:check"
-	},
 	"devDependencies": {
 		"@babel/core": "^7.18.10",
 		"@changesets/cli": "^2.24.3",
+		"@types/node": "^18.7.8",
 		"@typescript-eslint/eslint-plugin": "^5.33.1",
 		"@typescript-eslint/parser": "^5.33.1",
 		"@wordpress/eslint-plugin": "^12.9.0",
-		"eslint": "^8.22.0",
 		"eslint-plugin-prettier": "^4.2.1",
+		"eslint": "^8.22.0",
 		"prettier": "npm:wp-prettier@^2.6.2",
-		"typescript": "^4.7.4"
+		"typescript": "^4.7.4",
+		"unbuild": "^0.8.9",
+		"vite": "^3.0.9"
+	},
+	"peerDependencies": {
+		"vite": "^3.0.0"
+	},
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
+			"types": "./dist/index.d.ts"
+		},
+		"./plugins": {
+			"import": "./dist/plugins/index.mjs",
+			"require": "./dist/plugins/index.cjs",
+			"types": "./dist/plugins/index.d.ts"
+		},
+		"./utils": {
+			"import": "./dist/utils/index.mjs",
+			"require": "./dist/utils/index.cjs",
+			"types": "./dist/utils/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"dev": "unbuild --stub",
+		"eslint:check": "eslint --ext .cjs,.js,.ts .",
+		"prettier:check": "prettier --check .",
+		"lint": "npm run prettier:check && npm run eslint:check"
 	}
 }

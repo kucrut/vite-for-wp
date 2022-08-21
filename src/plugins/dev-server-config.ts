@@ -1,5 +1,5 @@
 import { mergeConfig, type Plugin } from 'vite';
-import { choose_port } from '../utils/';
+import { choose_port } from '../utils';
 
 export default function dev_server_config(): Plugin {
 	return {
