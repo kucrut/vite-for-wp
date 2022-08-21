@@ -41,8 +41,6 @@ jobs:
       - name: Create tag
         uses: EndBug/add-and-commit@v9
         if: steps.changesets.outputs.published == 'true'
-        run: |
-          NEW_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g')
         with:
-          tag: "$NEW_VERSION"
+          tag: "$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g')"
           push: "--tags"
