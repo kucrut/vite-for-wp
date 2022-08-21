@@ -1,8 +1,9 @@
+.pnpm-store
 *.lock
 **/dist/**
-**node_modules/**
+**/node_modules/**
+/.changeset
+/LICENSE
 package-lock.json
 php/vendor/**
 pnpm-lock.yaml
-/.changeset
-/LICENSE
