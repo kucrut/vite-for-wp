@@ -9,11 +9,16 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    # prevents this action from running on forks
+    if: github.repository == 'kucrut/vite-for-wp'
     name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
