@@ -54,6 +54,7 @@
 		"dev": "unbuild --stub",
 		"eslint:check": "eslint --ext .cjs,.js,.ts .",
 		"prettier:check": "prettier --check .",
-		"lint": "npm run prettier:check && npm run eslint:check"
+		"lint": "npm run prettier:check && npm run eslint:check",
+		"release": "changeset publish"
 	}
 }
