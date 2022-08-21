@@ -1,10 +1,8 @@
 *.lock
 **/dist/**
-examples/**/__packages__/**
-examples/**/vendor/**
-examples/**/wordpress/**
-node_modules/**
+**node_modules/**
 package-lock.json
 php/vendor/**
 pnpm-lock.yaml
-LICENSE
+/.changeset
+/LICENSE
