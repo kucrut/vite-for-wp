@@ -29,6 +29,12 @@ jobs:
       - run: pnpm install --frozen-lockfile --silent
       - run: pnpm build
 
+      - id: get_version
+        shell: bash
+        run: |
+          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g')
+          echo "::set-output name=package_version::$VERSION"
+
       - name: Create release pull request or publish to NPM
         id: changesets
         uses: changesets/action@v1
@@ -42,5 +48,5 @@ jobs:
         uses: EndBug/add-and-commit@v9
         if: steps.changesets.outputs.published == 'true'
         with:
-          tag: "$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g')"
+          tag: ${{ steps.get_version.outputs.package_version }}
           push: "--tags"
