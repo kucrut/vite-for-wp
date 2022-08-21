@@ -35,8 +35,8 @@ jobs:
           composer install --prefer-dist --quiet
           composer lint
 
-  lint_js:
-    name: Lint JS files
+  lint_build_js:
+    name: Lint & build JS
     runs-on: ubuntu-latest
     needs: lint_php
 
@@ -73,3 +73,6 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+
+      - name: Build
+        run: pnpm build
