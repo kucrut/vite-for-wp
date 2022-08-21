@@ -4,6 +4,8 @@ import { mergeConfig, type ResolvedConfig, type UserConfig } from 'vite';
 
 import { dev_server_config, dev_server_manifest } from './plugins';
 
+console.log( 'boo' );
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExtraConfig = Record< string, any >;
 type InputOption = ResolvedConfig[ 'build' ][ 'rollupOptions' ][ 'input' ];
