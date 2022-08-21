@@ -1,7 +1,7 @@
 on:
   pull_request:
     paths:
-      - "js/**"
+      - "src/**"
       - ".eslintrc.json"
       - ".prettierrc.json"
       - "package.json"
