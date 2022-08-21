@@ -3,6 +3,10 @@ on:
     paths:
       - "php/**"
 
+defaults:
+  run:
+    working-directory: php
+
 jobs:
   lint_php:
     name: Lint PHP package
@@ -31,5 +35,5 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer --working-dir=php install --prefer-dist --quiet
-          composer --working-dir=php lint
+          composer install --prefer-dist --quiet
+          composer lint
