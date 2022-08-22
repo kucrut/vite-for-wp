@@ -8,10 +8,18 @@
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
+	"homepage": "https://github.com/kucrut/vite-for-wp",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:/kucrut/vite-for-wp.git"
+		"url": "https://github.com/kucrut/vite-for-wp.git"
 	},
+	"bugs": {
+		"url": "https://github.com/kucrut/vite-for-wp/issues"
+	},
+	"keywords": [
+		"vite",
+		"wordpress"
+	],
 	"devDependencies": {
 		"@babel/core": "^7.18.10",
 		"@changesets/cli": "^2.24.3",
