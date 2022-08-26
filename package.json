@@ -55,7 +55,10 @@
 		}
 	},
 	"files": [
-		"dist"
+		"index.*",
+		"plugins",
+		"shared",
+		"utils"
 	],
 	"scripts": {
 		"build": "unbuild",
