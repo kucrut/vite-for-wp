@@ -4,44 +4,21 @@
 
 ## Usage
 
-### Plugin/theme
+Let's assume we have this plugin files structure:
 
-Add the composer dependency:
-
-```sh
-composer require kucrut/vite-for-wp
 ```
-
-If your plugin/theme doesn't use composer, feel free to copy [the main file](https://github.com/kucrut/vite-for-wp/blob/main/vite-for-wp.php) and require it.
-
-Enqueue the script:
-
-```php
-<?php
-
-use Kucrut\Vite;
-
-add_action( 'wp_enqueue_scripts', function (): void {
-	Vite\enqueue_asset(
-		__DIR__ . 'js/dist',
-		'src/main.ts',
-		[
-			'handle' => 'my-script-handle',
-			'dependencies' => [ 'wp-components', 'some-script-handle' ], // Optional script dependencies. Defaults to empty array.
-			'css-dependencies' => [ 'wp-components', 'some-style-handle' ], // Optional style dependencies. Defaults to empty array.
-			'css-media' => 'all', // Optional.
-			'css-only' => false, // Optional. Set to true to only load style assets in production mode.
-			'in-footer' => true, // Optional. Defaults to false.
-		]
-	);
-} );
+my-plugin/
+├ js/
+| └ src/
+|   └ main.ts
+├ package.json
+├ plugin.php
+└ vite.config.js
 ```
-
-To only register the asset, use `Vite\register_asset()`. It accepts same parameters as `Vite\enqueue_asset()` and returns an array of scripts and styles handles that you can enqueue later using `wp_enqueue_script()` and `wp_enqueue_style()`. Please note that style assets are only registered in production mode because in development mode, they will be automatically loaded by Vite.
 
 ### JavaScript
 
-From your JS package, add the dependencies:
+Add JS dependencies:
 
 ```sh
 npm add -D vite @kucrut/vite-for-wp
@@ -85,6 +62,41 @@ Lastly, add `dev` and `build` scripts to your `package.json`:
 	}
 }
 ```
+
+### PHP
+
+Add the composer dependency:
+
+```sh
+composer require kucrut/vite-for-wp
+```
+
+If your plugin/theme doesn't use composer, feel free to copy [the main file](https://github.com/kucrut/vite-for-wp/blob/main/vite-for-wp.php) and require it.
+
+Enqueue the script:
+
+```php
+<?php
+
+use Kucrut\Vite;
+
+add_action( 'wp_enqueue_scripts', function (): void {
+	Vite\enqueue_asset(
+		__DIR__ . 'js/dist',
+		'js/src/main.ts',
+		[
+			'handle' => 'my-script-handle',
+			'dependencies' => [ 'wp-components', 'some-script-handle' ], // Optional script dependencies. Defaults to empty array.
+			'css-dependencies' => [ 'wp-components', 'some-style-handle' ], // Optional style dependencies. Defaults to empty array.
+			'css-media' => 'all', // Optional.
+			'css-only' => false, // Optional. Set to true to only load style assets in production mode.
+			'in-footer' => true, // Optional. Defaults to false.
+		]
+	);
+} );
+```
+
+To only register the asset, use `Vite\register_asset()`. It accepts same parameters as `Vite\enqueue_asset()` and returns an array of scripts and styles handles that you can enqueue later using `wp_enqueue_script()` and `wp_enqueue_style()`. Please note that style assets are only registered in production mode because in development mode, they will be automatically loaded by Vite.
 
 You can now run `npm run dev` when developing your plugin/theme and run `npm run build` to build the production assets.
 
