@@ -8,7 +8,7 @@ export default function dev_server_manifest(): Plugin {
 
 	return {
 		apply: 'serve',
-		name: 'hm-dev-server-manifest',
+		name: 'v4wp-dev-server-manifest',
 
 		configResolved( config ) {
 			const { base, build, plugins, server } = config;

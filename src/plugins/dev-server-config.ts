@@ -4,7 +4,7 @@ import { choose_port } from '../utils';
 export default function dev_server_config(): Plugin {
 	return {
 		apply: 'serve',
-		name: 'hm-dev-server',
+		name: 'v4wp-dev-server',
 
 		async config( config ) {
 			const { server = {} } = config;

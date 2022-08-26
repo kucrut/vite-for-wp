@@ -12,8 +12,9 @@ export default defineBuildConfig( {
 			input: './src/utils/index',
 		},
 	],
-	clean: true,
+	clean: false,
 	declaration: true,
+	outDir: '.',
 	externals: [ 'vite' ],
 	rollup: {
 		emitCJS: true,
