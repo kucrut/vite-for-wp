@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.2.0
+
+### Minor Changes
+
+-   ef4decc: Add support for WP global modules
+
 ## 0.1.2
 
 ### Patch Changes
