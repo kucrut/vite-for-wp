@@ -110,6 +110,8 @@ add_action( 'wp_enqueue_scripts', function (): void {
 } );
 ```
 
+Note that each entrypoint needs to be enqueued separately, ie. if you have multiple entrypoints, you'll need to call `Vite\enqueue_asset()` for each and every one of them.
+
 To only register the asset, use `Vite\register_asset()`. It accepts same parameters as `Vite\enqueue_asset()` and returns an array of scripts and styles handles that you can enqueue later using `wp_enqueue_script()` and `wp_enqueue_style()`. Please note that style assets are only registered in production mode because in development mode, they will be automatically loaded by Vite.
 
 You can now run `npm run dev` when developing your plugin/theme and run `npm run build` to build the production assets.
