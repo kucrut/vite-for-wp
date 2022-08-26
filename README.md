@@ -32,6 +32,20 @@ import create_config from '@kucrut/vite-for-wp';
 export default create_config( 'js/src/main.ts', 'js/dist' );
 ```
 
+If you have multiple entrypoints to build, pass an object as the first parameter:
+
+```js
+import create_config from '@kucrut/vite-for-wp';
+
+export default create_config(
+	{
+		main: 'js/src/main.ts',
+		extra: 'js/src/extra.ts',
+	},
+	'js/dist',
+);
+```
+
 Pass a [configuration object](https://vitejs.dev/config/) as the third parameter if you need to add plugins, use https, etc:
 
 ```js
