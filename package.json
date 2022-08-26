@@ -5,9 +5,9 @@
 	"author": "Dzikri Aziz",
 	"license": "MIT",
 	"packageManager": "pnpm@7.9.3",
-	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.ts",
+	"main": "./index.cjs",
+	"module": "./index.mjs",
+	"types": "./index.d.ts",
 	"homepage": "https://github.com/kucrut/vite-for-wp",
 	"repository": {
 		"type": "git",
@@ -39,19 +39,19 @@
 	},
 	"exports": {
 		".": {
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs",
-			"types": "./dist/index.d.ts"
+			"import": "./index.mjs",
+			"require": "./index.cjs",
+			"types": "./index.d.ts"
 		},
 		"./plugins": {
-			"import": "./dist/plugins/index.mjs",
-			"require": "./dist/plugins/index.cjs",
-			"types": "./dist/plugins/index.d.ts"
+			"import": "./plugins/index.mjs",
+			"require": "./plugins/index.cjs",
+			"types": "./plugins/index.d.ts"
 		},
 		"./utils": {
-			"import": "./dist/utils/index.mjs",
-			"require": "./dist/utils/index.cjs",
-			"types": "./dist/utils/index.d.ts"
+			"import": "./utils/index.mjs",
+			"require": "./utils/index.cjs",
+			"types": "./utils/index.d.ts"
 		}
 	},
 	"files": [
