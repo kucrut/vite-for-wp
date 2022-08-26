@@ -56,7 +56,6 @@ export default function wp_globals(): WPGlobals {
 	];
 
 	const otherModules = {
-		'wp': 'wp',
 		'jquery': 'jQuery',
 		'tinymce': 'tinymce',
 		'moment': 'moment',
@@ -69,7 +68,7 @@ export default function wp_globals(): WPGlobals {
 	return {
 		...otherModules,
 		...Object.fromEntries(
-			wpModules.map( handle => [ `@wordpress/${ handle }`, [ 'wp', camel_case_dash( handle ) ] ] ),
+			wpModules.map( handle => [ `@wordpress/${ handle }`, `wp.${ camel_case_dash( handle ) }` ] ),
 		),
 	};
 }
