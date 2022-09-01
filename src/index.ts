@@ -19,6 +19,7 @@ type InputOption = ResolvedConfig[ 'build' ][ 'rollupOptions' ][ 'input' ];
  */
 export default function create_config( input: InputOption, out_dir: string, extra_config?: ExtraConfig ): UserConfig {
 	let config: UserConfig = {
+		base: './',
 		build: {
 			emptyOutDir: true,
 			manifest: true,
