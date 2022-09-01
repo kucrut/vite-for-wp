@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.3.0
+
+### Minor Changes
+
+-   cd44819: Support dynamic imports/code splitting
+
 ## 0.2.0
 
 ### Minor Changes
