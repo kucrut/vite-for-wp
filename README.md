@@ -146,6 +146,11 @@ export default create_config( 'js/src/main.ts', 'js/dist', {
 
 Note that you will need to add them to the `dependencies` array when enqueueing the script (see example above).
 
+## Example plugins
+
+-   React: https://github.com/kucrut/vite-for-wp-example-react
+-   Svelte: https://github.com/kucrut/catatan
+
 ## Limitations
 
 Currently, this package doesn't provide HMR support for building editor blocks yet.
