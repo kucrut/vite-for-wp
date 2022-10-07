@@ -120,7 +120,10 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
 		// Pre-HTML5.
 		$tag = preg_replace( $script_type_regex, $attribute, $tag );
 	} else {
-		$tag = preg_replace( '#(<script)(.*></script>)#', sprintf( '$1 %s$2', $attribute ), $tag );
+		$pattern = $handle === VITE_CLIENT_SCRIPT_HANDLE
+			? '#(<script)(.*)#'
+			: '#(<script)(.*></script>)#';
+		$tag = preg_replace( $pattern, sprintf( '$1 %s$2', $attribute ), $tag );
 	}
 
 	return $tag;
