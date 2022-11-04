@@ -255,7 +255,7 @@ function load_development_asset( object $manifest, string $entry, array $options
  * @return array|null Array containing registered scripts & styles or NULL if there was an error.
  */
 function load_production_asset( object $manifest, string $entry, array $options ): ?array {
-	$url = prepare_asset_url($manifest->dir);
+	$url = prepare_asset_url( $manifest->dir );
 
 	if ( ! isset( $manifest->data->{$entry} ) ) {
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
@@ -334,21 +334,21 @@ function parse_options( array $options ): array {
  *
  * @author Justin Slamka <jslamka5685@gmail.com>
  *
- * @param string $dir Asset directory
+ * @param string $dir Asset directory.
  *
  * @return string
  */
-function prepare_asset_url($dir) {
+function prepare_asset_url( string $dir ) {
 	$url = content_url( str_replace( WP_CONTENT_DIR, '', $dir ) );
-	$url_matches_pattern = preg_match("/(?<address>http(?:s?):\/\/.*\/)(?<fullPath>wp-content(?<removablePath>\/.*)\/(?:plugins|themes)\/.*)/", $url, $url_parts);
-	
-	if($url_matches_pattern === 0) {
+	$url_matches_pattern = preg_match( '/(?<address>http(?:s?):\/\/.*\/)(?<fullPath>wp-content(?<removablePath>\/.*)\/(?:plugins|themes)\/.*)/', $url, $url_parts );
+
+	if ( $url_matches_pattern === 0 ) {
 		return $url;
 	}
-	
-	["address" => $address, "fullPath" => $full_path, "removablePath" => $removable_path] = $url_parts;
 
-	return sprintf("%s%s", $address, str_replace($removable_path, "", $full_path));
+	['address' => $address, 'fullPath' => $full_path, 'removablePath' => $removable_path] = $url_parts;
+
+	return sprintf( '%s%s' , $address, str_replace( $removable_path, "", $full_path ) );
 }
 
 /**
