@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.4.0
+
+### Minor Changes
+
+-   2bdce3b: Improve production assets handling, props @slamkajs.
+
 ## 0.3.1
 
 ### Patch Changes
