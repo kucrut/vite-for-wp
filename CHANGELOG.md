@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.5.1
+
+### Patch Changes
+
+-   6393c5a: Replace deprecated option: polyfillModulePreload -> modulePreload
+
 ## 0.5.0
 
 ### Minor Changes
