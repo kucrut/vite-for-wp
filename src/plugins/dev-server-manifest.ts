@@ -38,12 +38,12 @@ export default function dev_server_manifest(): Plugin {
 				if ( fs.existsSync( devManifestFile ) ) {
 					fs.rmSync( devManifestFile );
 				}
+
+				process.exit();
 			};
 
 			fs.writeFileSync( devManifestFile, JSON.stringify( data ), 'utf8' );
 
-			// TODO: Improve this!
-			// NOTE: signal-exit package doesn't work for this purpose.
 			process.once( 'SIGINT', cleanUp );
 			process.once( 'SIGTERM', cleanUp );
 		},
