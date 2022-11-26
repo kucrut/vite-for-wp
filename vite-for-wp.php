@@ -348,7 +348,7 @@ function prepare_asset_url( string $dir ) {
 
 	['address' => $address, 'fullPath' => $full_path, 'removablePath' => $removable_path] = $url_parts;
 
-	return sprintf( '%s%s' , $address, str_replace( $removable_path, "", $full_path ) );
+	return sprintf( '%s%s', $address, str_replace( $removable_path, '', $full_path ) );
 }
 
 /**
