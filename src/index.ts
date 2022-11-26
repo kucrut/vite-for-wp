@@ -23,8 +23,8 @@ export default function create_config( input: InputOption, out_dir: string, extr
 		build: {
 			emptyOutDir: true,
 			manifest: true,
+			modulePreload: false,
 			outDir: out_dir,
-			polyfillModulePreload: false,
 			rollupOptions: { input },
 			sourcemap: true,
 		},
