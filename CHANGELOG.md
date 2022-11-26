@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.5.0
+
+### Minor Changes
+
+-   f8041da: Exit process cleanly after removing manifest file
+
 ## 0.4.0
 
 ### Minor Changes

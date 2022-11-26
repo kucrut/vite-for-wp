@@ -1,6 +1,6 @@
 {
 	"name": "@kucrut/vite-for-wp",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"description": "Vite integration for WordPress plugins and themes development.",
 	"author": "Dzikri Aziz",
 	"license": "MIT",
