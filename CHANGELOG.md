@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.5.2
+
+### Patch Changes
+
+-   c9bf8fb: Update Vite -> 4.0.1
+
 ## 0.5.1
 
 ### Patch Changes
