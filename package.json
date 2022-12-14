@@ -21,21 +21,21 @@
 		"wordpress"
 	],
 	"devDependencies": {
-		"@babel/core": "^7.20.2",
+		"@babel/core": "^7.20.5",
 		"@changesets/cli": "^2.25.2",
-		"@types/node": "^18.11.9",
-		"@typescript-eslint/eslint-plugin": "^5.44.0",
-		"@typescript-eslint/parser": "^5.44.0",
+		"@types/node": "^18.11.15",
+		"@typescript-eslint/eslint-plugin": "^5.46.1",
+		"@typescript-eslint/parser": "^5.46.1",
 		"@wordpress/eslint-plugin": "^13.6.0",
-		"eslint": "^8.28.0",
+		"eslint": "^8.29.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"prettier": "npm:wp-prettier@^2.6.2",
-		"typescript": "^4.9.3",
-		"unbuild": "^1.0.1",
-		"vite": "^3.2.4"
+		"typescript": "^4.9.4",
+		"unbuild": "^1.0.2",
+		"vite": "^4.0.1"
 	},
 	"peerDependencies": {
-		"vite": "^3.1.6"
+		"vite": "^4.0.1"
 	},
 	"exports": {
 		".": {
