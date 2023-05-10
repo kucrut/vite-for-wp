@@ -339,13 +339,18 @@ function parse_options( array $options ): array {
  * @return string
  */
 function prepare_asset_url( string $dir ) {
+	if ( strpos( $dir, "\\wp-content") ) {
+		$split = str_split( $dir, strpos( $dir, "\\wp-content" ) + 11 );
+		array_shift($split);
+		$dir = implode('',$split);
+		$dir = str_replace( '\\', '\/', $dir );
+	}
 	$url = content_url( str_replace( WP_CONTENT_DIR, '', $dir ) );
 	$url_matches_pattern = preg_match( '/(?<address>http(?:s?):\/\/.*\/)(?<fullPath>wp-content(?<removablePath>\/.*)\/(?:plugins|themes)\/.*)/', $url, $url_parts );
 
 	if ( $url_matches_pattern === 0 ) {
 		return $url;
 	}
-
 	['address' => $address, 'fullPath' => $full_path, 'removablePath' => $removable_path] = $url_parts;
 
 	return sprintf( '%s%s', $address, str_replace( $removable_path, '', $full_path ) );
