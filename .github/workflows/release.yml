@@ -31,6 +31,9 @@ jobs:
         with:
           run_install: false
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --silent
+
       - id: get_version
         shell: bash
         run: |
