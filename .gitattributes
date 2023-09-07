@@ -8,7 +8,6 @@ src export-ignore
 .gitignore export-ignore
 .prettierignore export-ignore
 .prettierrc.json export-ignore
-build.config.ts export-ignore
 package.json export-ignore
 phpcs.xml.dist export-ignore
 pnpm-lock.yaml export-ignore

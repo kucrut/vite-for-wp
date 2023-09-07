@@ -1,27 +1,24 @@
-import { createServer } from 'net';
+/** @typedef {{ host?: string; port: number; }} ChoosePortOptions */
 
-export type ChoosePortOptions = {
-	host?: string;
-	port: number;
-};
+import { createServer } from 'net';
 
 /**
  * Choose port
  *
  * Stolen from vite.
  *
+ * @type {(options: ChoosePortOptions) => Promise<number>}
  * @param {ChoosePortOptions} options Options.
  * @return {Promise<number>}  Chosen port.
  */
-export default async function choose_port(
-	options: ChoosePortOptions = { port: 3000, host: 'localhost' },
-): Promise< number > {
+export async function choose_port( options = { port: 3000, host: 'localhost' } ) {
 	const server = createServer();
 
 	return new Promise( ( resolve, reject ) => {
 		let { port, host } = options;
 
-		const onError = ( e: Error & { code?: string } ) => {
+		/** @param {Error & { code?: string }} e */
+		const onError = e => {
 			if ( e.code === 'EADDRINUSE' ) {
 				server.listen( ++port, host );
 			} else {

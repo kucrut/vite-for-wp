@@ -1,10 +1,12 @@
-import camel_case_dash from './camel-case-dash';
+import { camel_case_dash } from './camel-case-dash.js';
 
-type WPGlobals = {
-	[ key: string ]: string | string[];
-};
-
-export default function wp_globals(): WPGlobals {
+/**
+ * Get all global variables registered by WordPress
+ *
+ * @type {() => Record<string, string>}
+ * @return {Record<string, string>} Object containing global variable names registered by WordPress.
+ */
+export function wp_globals() {
 	const wpModules = [
 		'a11y',
 		'annotations',

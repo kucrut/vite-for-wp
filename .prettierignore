@@ -8,10 +8,5 @@
 package-lock.json
 pnpm-lock.yaml
 
-# Built files
-/index.d.ts
-/index.cjs
-/index.mjs
-/plugins
-/shared
-/utils
+# Generated files
+/types/**

@@ -5,9 +5,8 @@
 	"author": "Dzikri Aziz",
 	"license": "MIT",
 	"packageManager": "pnpm@7.9.3",
-	"main": "./index.cjs",
-	"module": "./index.mjs",
-	"types": "./index.d.ts",
+	"type": "module",
+	"types": "types/index.d.ts",
 	"homepage": "https://github.com/kucrut/vite-for-wp",
 	"repository": {
 		"type": "git",
@@ -21,51 +20,42 @@
 		"wordpress"
 	],
 	"devDependencies": {
-		"@babel/core": "^7.20.5",
-		"@changesets/cli": "^2.25.2",
-		"@types/node": "^18.11.15",
-		"@typescript-eslint/eslint-plugin": "^5.46.1",
-		"@typescript-eslint/parser": "^5.46.1",
-		"@wordpress/eslint-plugin": "^13.6.0",
-		"eslint": "^8.29.0",
+		"@babel/core": "^7.22.15",
+		"@changesets/cli": "^2.26.2",
+		"@types/node": "^20.5.9",
+		"@typescript-eslint/eslint-plugin": "^6.6.0",
+		"@typescript-eslint/parser": "^6.6.0",
+		"@wordpress/eslint-plugin": "^15.1.0",
+		"dts-buddy": "^0.2.4",
+		"eslint": "^8.48.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"prettier": "npm:wp-prettier@^2.6.2",
-		"typescript": "^4.9.4",
-		"unbuild": "^1.0.2",
-		"vite": "^4.0.1"
+		"prettier": "npm:wp-prettier@^2.8.5",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	},
 	"peerDependencies": {
-		"vite": "^4.0.1"
+		"vite": "^4.4.9"
 	},
 	"exports": {
+		"./package.json": "./package.json",
 		".": {
-			"import": "./index.mjs",
-			"require": "./index.cjs",
-			"types": "./index.d.ts"
-		},
-		"./plugins": {
-			"import": "./plugins/index.mjs",
-			"require": "./plugins/index.cjs",
-			"types": "./plugins/index.d.ts"
+			"types": "./types/index.d.ts",
+			"import": "./src/exports/index.js"
 		},
 		"./utils": {
-			"import": "./utils/index.mjs",
-			"require": "./utils/index.cjs",
-			"types": "./utils/index.d.ts"
+			"types": "./types/index.d.ts",
+			"import": "./src/exports/utils/index.js"
 		}
 	},
 	"files": [
-		"index.*",
-		"plugins",
-		"shared",
-		"utils"
+		"src",
+		"types"
 	],
 	"scripts": {
-		"build": "unbuild",
-		"dev": "unbuild --stub",
 		"eslint:check": "eslint --ext .cjs,.js,.ts .",
-		"prettier:check": "prettier --check .",
+		"generate:types": "node scripts/generate-types.js",
 		"lint": "npm run prettier:check && npm run eslint:check",
+		"prettier:check": "prettier --check .",
 		"release": "changeset publish"
 	}
 }
