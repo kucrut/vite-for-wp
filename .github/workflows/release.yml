@@ -37,8 +37,7 @@ jobs:
       - id: get_version
         shell: bash
         run: |
-          VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g')
-          echo "::set-output name=package_version::$VERSION"
+          echo package_version=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[", ]//g') >> $GITHUB_OUTPUT
 
       - name: Create release pull request or publish to NPM
         id: changesets
