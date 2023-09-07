@@ -1,9 +1,14 @@
 /* global process:false */
 
-import type { Plugin } from 'vite';
 import fs from 'fs';
 
-export default function dev_server_manifest(): Plugin {
+/**
+ * Development server manifest plugin
+ *
+ * @type {() => import('vite').Plugin}
+ * @return {import('vite').Plugin} Plugin object.
+ */
+export function dev_server_manifest() {
 	const pluginsToCheck = [ 'vite:react-refresh' ];
 
 	return {
