@@ -5,9 +5,8 @@
 	"author": "Dzikri Aziz",
 	"license": "MIT",
 	"packageManager": "pnpm@7.9.3",
-	"main": "./index.cjs",
-	"module": "./index.mjs",
-	"types": "./index.d.ts",
+	"type": "module",
+	"types": "types/index.d.ts",
 	"homepage": "https://github.com/kucrut/vite-for-wp",
 	"repository": {
 		"type": "git",
@@ -35,35 +34,28 @@
 		"vite": "^4.4.9"
 	},
 	"peerDependencies": {
-		"vite": "^4.0.1"
+		"vite": "^4.4.9"
 	},
 	"exports": {
+		"./package.json": "./package.json",
 		".": {
-			"import": "./index.mjs",
-			"require": "./index.cjs",
-			"types": "./index.d.ts"
-		},
-		"./plugins": {
-			"import": "./plugins/index.mjs",
-			"require": "./plugins/index.cjs",
-			"types": "./plugins/index.d.ts"
+			"types": "./types/index.d.ts",
+			"import": "./src/exports/index.js"
 		},
 		"./utils": {
-			"import": "./utils/index.mjs",
-			"require": "./utils/index.cjs",
-			"types": "./utils/index.d.ts"
+			"types": "./types/index.d.ts",
+			"import": "./src/exports/utils/index.js"
 		}
 	},
 	"files": [
-		"index.*",
-		"plugins",
-		"shared",
-		"utils"
+		"src",
+		"types"
 	],
 	"scripts": {
 		"eslint:check": "eslint --ext .cjs,.js,.ts .",
-		"prettier:check": "prettier --check .",
+		"generate:types": "node scripts/generate-types.js",
 		"lint": "npm run prettier:check && npm run eslint:check",
+		"prettier:check": "prettier --check .",
 		"release": "changeset publish"
 	}
 }
