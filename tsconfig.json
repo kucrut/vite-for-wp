@@ -1,13 +1,16 @@
 {
 	"include": [ "src/**/*.d.ts", "src/**/*.ts", "src/**/*.js" ],
 	"compilerOptions": {
+		"allowJs": true,
 		"baseUrl": "./",
+		"checkJs": true,
 		"declaration": true,
 		"esModuleInterop": true,
-		"module": "ES2020",
+		"module": "ES2022",
 		"moduleResolution": "Node",
+		"noEmit": true,
 		"noUnusedLocals": true,
-		"outDir": "dist",
+		"noUnusedParameters": true,
 		"sourceMap": true,
 		"strict": true,
 		"target": "ES2020"
