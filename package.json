@@ -27,6 +27,7 @@
 		"@typescript-eslint/eslint-plugin": "^6.6.0",
 		"@typescript-eslint/parser": "^6.6.0",
 		"@wordpress/eslint-plugin": "^15.1.0",
+		"dts-buddy": "^0.2.4",
 		"eslint": "^8.48.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"prettier": "npm:wp-prettier@^2.8.5",
