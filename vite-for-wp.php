@@ -46,20 +46,20 @@ function get_manifest( string $manifest_dir ): object {
 	}
 
 	if ( ! isset( $manifest_path ) ) {
-		throw new Exception( sprintf( '[Vite] No manifest found in %s.', $manifest_dir ) );
+		throw new Exception( esc_html( sprintf( '[Vite] No manifest found in %s.', $manifest_dir ) ) );
 	}
 
 	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 	$manifest_content = file_get_contents( $manifest_path );
 
 	if ( ! $manifest_content ) {
-		throw new Exception( sprintf( '[Vite] Failed to read manifest %s.', $manifest_path ) );
+		throw new Exception( esc_html( sprintf( '[Vite] Failed to read manifest %s.', $manifest_path ) ) );
 	}
 
 	$manifest = json_decode( $manifest_content );
 
 	if ( json_last_error() ) {
-		throw new Exception( sprintf( '[Vite] Manifest %s contains invalid data.', $manifest_path ) );
+		throw new Exception( esc_html( sprintf( '[Vite] Manifest %s contains invalid data.', $manifest_path ) ) );
 	}
 
 	/**

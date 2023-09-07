@@ -14,9 +14,9 @@
 	<config name="minimum_supported_wp_version" value="5.7"/>
 
 	<rule ref="WordPress-Extra">
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
 		<exclude name="Generic.Commenting.Todo.CommentFound"/>
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned"/>
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 	</rule>

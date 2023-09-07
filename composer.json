@@ -13,16 +13,15 @@
 			"name": "Dzikri Aziz"
 		}
 	],
+	"scripts": {
+		"lint": "phpcs"
+	},
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^2.3",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
-	},
-	"scripts": {
-		"lint": "phpcs"
+		"wp-coding-standards/wpcs": "^3.0"
 	}
 }
