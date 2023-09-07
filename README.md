@@ -98,7 +98,7 @@ use Kucrut\Vite;
 
 add_action( 'wp_enqueue_scripts', function (): void {
 	Vite\enqueue_asset(
-		__DIR__ . 'js/dist',
+		__DIR__ . '/js/dist',
 		'js/src/main.ts',
 		[
 			'handle' => 'my-script-handle',
