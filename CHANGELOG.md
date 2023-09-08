@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.6.0
+
+### Minor Changes
+
+-   89d341b: Vite 4.4 & Typings with JSDoc
+
 ## 0.5.2
 
 ### Patch Changes
