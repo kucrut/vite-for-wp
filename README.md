@@ -128,23 +128,43 @@ If your JS package depends on one or more WordPress modules (eg. `@wordpress/i18
 npm add -D rollup-plugin-external-globals
 ```
 
+For example, to externalise `react` and `react-dom` packages:
+
 ```js
 // vite.config.js
+import { defineConfig } from 'vite';
 import { wp_globals } from '@kucrut/vite-for-wp/utils';
 import create_config from '@kucrut/vite-for-wp';
 import external_globals from 'rollup-plugin-external-globals';
+import react from '@vitejs/plugin-react';
 
-export default create_config( 'js/src/main.ts', 'js/dist', {
-	plugins: [
-		external_globals( {
-			...wp_globals(),
-			'some-registered-script-handle': 'GlobalVar',
-		} ),
-	],
+export default defineConfig( ( { command } ) => {
+	if ( command === 'serve' ) {
+		return create_config( 'js/src/main.jsx', 'js/dist', {
+			plugins: [ react() ],
+		} );
+	}
+
+	return create_config( 'js/src/main.jsx', 'js/dist', {
+		plugins: [
+			react(),
+			external_globals( {
+				...wp_globals(),
+			} ),
+		],
+		build: {
+			rollupOptions: {
+				external: [ 'react', 'react-dom' ],
+				output: {
+					globals: wp_globals(),
+				},
+			},
+		},
+	} );
 } );
 ```
 
-Note that you will need to add them to the `dependencies` array when enqueueing the script (see example above).
+Note that `react` and `react-dom` packages still need to be installed as dev dependencies and added to the `dependencies` array when enqueueing the script (see example above).
 
 ## Example plugins
 
