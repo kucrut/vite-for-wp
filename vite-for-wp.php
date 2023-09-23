@@ -333,6 +333,7 @@ function parse_options( array $options ): array {
  * Prepare asset url
  *
  * @author Justin Slamka <jslamka5685@gmail.com>
+ * @since 0.4.0
  *
  * @param string $dir Asset directory.
  *
