@@ -334,6 +334,7 @@ function parse_options( array $options ): array {
  *
  * @author Justin Slamka <jslamka5685@gmail.com>
  * @since 0.4.0
+ * @since 0.6.1 Normalize paths so they work on Windows as well.
  *
  * @param string $dir Asset directory.
  *
