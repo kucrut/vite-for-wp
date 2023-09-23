@@ -169,7 +169,9 @@ Note that `react` and `react-dom` packages still need to be installed as dev dep
 ## Example plugins
 
 -   React: https://github.com/kucrut/vite-for-wp-example-react
--   Svelte: https://github.com/kucrut/catatan
+-   Svelte: https://github.com/kucrut/vite-for-wp-example-svelte
+-   Vanilla JS: https://github.com/kucrut/vite-for-wp-example-vanilla-js
+-   Vue: https://github.com/kucrut/vite-for-wp-example-vue
 
 ## Limitations
 
