@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.6.1
+
+### Patch Changes
+
+-   f221454: Fix production asset paths on Windows
+
 ## 0.6.0
 
 ### Minor Changes
