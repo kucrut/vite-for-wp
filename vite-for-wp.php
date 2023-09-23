@@ -16,7 +16,7 @@ const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
 /**
  * Get manifest data
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param string $manifest_dir Path to manifest directory.
  *
@@ -87,7 +87,7 @@ function get_manifest( string $manifest_dir ): object {
  * This creates a function to be used as callback for the `script_loader` filter
  * which adds `type="module"` attribute to the script tag.
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param string $handle Script handle.
  *
@@ -100,7 +100,7 @@ function filter_script_tag( string $handle ): void {
 /**
  * Add `type="module"` to a script tag
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param string $target_handle Handle of the script being targeted by the filter callback.
  * @param string $tag           Original script tag.
@@ -132,7 +132,7 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
 /**
  * Generate development asset src
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param object $manifest Asset manifest.
  * @param string $entry    Asset entry name.
@@ -150,7 +150,7 @@ function generate_development_asset_src( object $manifest, string $entry ): stri
 /**
  * Register vite client script
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param object $manifest Asset manifest.
  *
@@ -190,7 +190,7 @@ EOS;
 /**
  * Load development asset
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param object $manifest Asset manifest.
  * @param string $entry    Entrypoint to enqueue.
@@ -246,7 +246,7 @@ function load_development_asset( object $manifest, string $entry, array $options
 /**
  * Load production asset
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param object $manifest Asset manifest.
  * @param string $entry    Entrypoint to enqueue.
@@ -310,7 +310,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 /**
  * Parse register/enqueue options
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @param array $options Array of options.
  *
@@ -333,13 +333,17 @@ function parse_options( array $options ): array {
  * Prepare asset url
  *
  * @author Justin Slamka <jslamka5685@gmail.com>
+ * @since 0.4.0
+ * @since 0.6.1 Normalize paths so they work on Windows as well.
  *
  * @param string $dir Asset directory.
  *
  * @return string
  */
 function prepare_asset_url( string $dir ) {
-	$url = content_url( str_replace( WP_CONTENT_DIR, '', $dir ) );
+	$content_dir = wp_normalize_path( WP_CONTENT_DIR );
+	$manifest_dir = wp_normalize_path( $dir );
+	$url = content_url( str_replace( $content_dir, '', $manifest_dir ) );
 	$url_matches_pattern = preg_match( '/(?<address>http(?:s?):\/\/.*\/)(?<fullPath>wp-content(?<removablePath>\/.*)\/(?:plugins|themes)\/.*)/', $url, $url_parts );
 
 	if ( $url_matches_pattern === 0 ) {
@@ -354,7 +358,7 @@ function prepare_asset_url( string $dir ) {
 /**
  * Register asset
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @see load_development_asset
  * @see load_production_asset
@@ -387,7 +391,7 @@ function register_asset( string $manifest_dir, string $entry, array $options ): 
 /**
  * Enqueue asset
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @see register_asset
  *
