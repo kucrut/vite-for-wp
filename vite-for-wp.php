@@ -339,7 +339,9 @@ function parse_options( array $options ): array {
  * @return string
  */
 function prepare_asset_url( string $dir ) {
-	$url = content_url( str_replace( WP_CONTENT_DIR, '', $dir ) );
+	$content_dir = wp_normalize_path( WP_CONTENT_DIR );
+	$manifest_dir = wp_normalize_path( $dir );
+	$url = content_url( str_replace( $content_dir, '', $manifest_dir ) );
 	$url_matches_pattern = preg_match( '/(?<address>http(?:s?):\/\/.*\/)(?<fullPath>wp-content(?<removablePath>\/.*)\/(?:plugins|themes)\/.*)/', $url, $url_parts );
 
 	if ( $url_matches_pattern === 0 ) {
