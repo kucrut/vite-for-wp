@@ -38,7 +38,7 @@ function get_manifest( string $manifest_dir ): object {
 			return $manifests[ $manifest_path ];
 		}
 
-		if ( is_readable( $manifest_path ) ) {
+		if ( is_file( $manifest_path ) && is_readable( $manifest_path ) ) {
 			break;
 		}
 
