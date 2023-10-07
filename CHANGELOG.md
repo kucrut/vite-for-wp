@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.6.2
+
+### Patch Changes
+
+-   a4cd144: Improve manifest file finder
+
 ## 0.6.1
 
 ### Patch Changes
