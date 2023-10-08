@@ -23,6 +23,7 @@ export function wp_scripts( options = {} ) {
 	/** @type { import('vite').Plugin } */
 	const plugin = {
 		name: 'v4wp:wp-scripts',
+		apply: 'build',
 
 		config() {
 			return {
