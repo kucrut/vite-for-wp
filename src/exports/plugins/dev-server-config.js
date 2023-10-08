@@ -1,5 +1,5 @@
 import { mergeConfig } from 'vite';
-import { choose_port } from '../exports/utils/choose-port.js';
+import { choose_port } from '../utils/choose-port.js';
 
 /**
  * Dev server configuration plugin
@@ -10,7 +10,7 @@ import { choose_port } from '../exports/utils/choose-port.js';
 export function dev_server_config() {
 	return {
 		apply: 'serve',
-		name: 'v4wp-dev-server',
+		name: 'v4wp:dev-server',
 
 		async config( config ) {
 			const { server = {} } = config;

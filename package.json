@@ -42,6 +42,10 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/exports/index.js"
 		},
+		"./plugins": {
+			"types": "./types/index.d.ts",
+			"import": "./src/exports/plugins/index.js"
+		},
 		"./utils": {
 			"types": "./types/index.d.ts",
 			"import": "./src/exports/utils/index.js"
