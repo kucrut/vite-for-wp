@@ -1,5 +1,5 @@
 import { mergeConfig } from 'vite';
-import { choose_port } from '../exports/utils/choose-port.js';
+import { choose_port } from '../utils/choose-port.js';
 
 /**
  * Dev server configuration plugin
