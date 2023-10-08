@@ -1,9 +1,19 @@
 declare module '@kucrut/vite-for-wp' {
+	export function v4wp(options: Options): import('vite').PluginOption[];
 	export default function create_config(input: InputOption, out_dir: string, extra_config?: ExtraConfig): UserConfig;
 	export type ResolvedConfig = import('vite').ResolvedConfig;
 	export type UserConfig = import('vite').UserConfig;
 	export type ExtraConfig = Record<string, any>;
 	export type InputOption = ResolvedConfig['build']['rollupOptions']['input'];
+	export type Options = {
+		input?: InputOption;
+		outDir?: ResolvedConfig['build']['outDir'];
+	};
+}
+
+declare module '@kucrut/vite-for-wp/plugins' {
+	export function dev_server_config(): import('vite').Plugin;
+	export function dev_server_manifest(): import('vite').Plugin;
 }
 
 declare module '@kucrut/vite-for-wp/utils' {
