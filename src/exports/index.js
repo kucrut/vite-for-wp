@@ -7,8 +7,8 @@
 
 import { mergeConfig } from 'vite';
 
-import { dev_server_config } from '../plugins/dev-server-config.js';
-import { dev_server_manifest } from '../plugins/dev-server-manifest.js';
+import { dev_server_config } from './plugins/dev-server-config.js';
+import { dev_server_manifest } from './plugins/dev-server-manifest.js';
 
 /**
  * Create vite config
