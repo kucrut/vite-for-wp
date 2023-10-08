@@ -9,7 +9,7 @@ import { wp_globals } from '../utils/wp-globals.js';
  *
  * This plugin provides easy access to built-in WordPress scripts and exclude them from the build.
  *
- * @type {(options: Options) => import('vite').Plugin}
+ * @type {(options?: Options) => import('vite').PluginOption[]}
  * @return {import('vite').PluginOption[]} Vite plugins instances.
  */
 export function wp_scripts( options = {} ) {
