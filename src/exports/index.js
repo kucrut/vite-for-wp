@@ -9,6 +9,7 @@ import { mergeConfig } from 'vite';
 
 import { dev_server_config } from './plugins/dev-server-config.js';
 import { dev_server_manifest } from './plugins/dev-server-manifest.js';
+import { wp } from './plugins/wp.js';
 
 /**
  * Create vite config
@@ -23,19 +24,7 @@ import { dev_server_manifest } from './plugins/dev-server-manifest.js';
 export default function create_config( input, out_dir, extra_config ) {
 	/** @type {UserConfig} */
 	let config = {
-		base: './',
-		build: {
-			emptyOutDir: true,
-			manifest: true,
-			modulePreload: false,
-			outDir: out_dir,
-			rollupOptions: { input },
-			sourcemap: true,
-		},
-		css: {
-			devSourcemap: true,
-		},
-		plugins: [ dev_server_config(), dev_server_manifest() ],
+		plugins: [ wp( { input, outDir: out_dir } ), dev_server_config(), dev_server_manifest() ],
 	};
 
 	if ( extra_config ) {
