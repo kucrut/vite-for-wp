@@ -27,37 +27,43 @@ npm add -D vite @kucrut/vite-for-wp
 Create `vite.config.js`:
 
 ```js
-import create_config from '@kucrut/vite-for-wp';
+import { v4wp } from '@kucrut/vite-for-wp';
 
-export default create_config( 'js/src/main.ts', 'js/dist' );
+export default {
+	plugins: [ v4wp( { input: 'js/src/main.ts', outDir: 'js/dist' } ) ],
+};
 ```
 
-If you have multiple entrypoints to build, pass an object as the first parameter:
+For multiple entrypoints, pass an object as the first parameter:
 
 ```js
 // vite.config.js
-import create_config from '@kucrut/vite-for-wp';
+import { v4wp } from '@kucrut/vite-for-wp';
 
-export default create_config(
-	{
-		main: 'js/src/main.ts',
-		extra: 'js/src/extra.ts',
-	},
-	'js/dist',
-);
+export default {
+	plugins: [
+		v4wp( {
+			input: {
+				main: 'js/src/main.ts',
+				extra: 'js/src/extra.ts',
+			},
+			outDir: 'js/dist',
+		} ),
+	],
+};
 ```
 
-Pass a [configuration object](https://vitejs.dev/config/) as the third parameter if you need to add plugins, use https, etc:
+Feel free to [customise the configuration](https://vitejs.dev/config/) to add plugins, use https, etc:
 
 ```js
 // vite.config.js
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import create_config from '@kucrut/vite-for-wp';
+import { v4wp } from '@kucrut/vite-for-wp';
 import react from '@vitejs/plugin-react';
 
-export default create_config( 'js/src/main.ts', 'js/dist', {
-	plugins: [ react() ],
+export default {
+	plugins: [ v4wp( { input: 'js/src/main.ts', outDir: 'js/dist' } ), react() ],
 	server: {
 		host: 'mydomain.com',
 		https: {
@@ -65,7 +71,7 @@ export default create_config( 'js/src/main.ts', 'js/dist', {
 			key: readFileSync( 'path/to/key.pem' ),
 		},
 	},
-} );
+};
 ```
 
 Lastly, add `dev` and `build` scripts to your `package.json`:
