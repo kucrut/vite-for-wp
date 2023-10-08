@@ -13,7 +13,7 @@ export function dev_server_manifest() {
 
 	return {
 		apply: 'serve',
-		name: 'v4wp-dev-server-manifest',
+		name: 'v4wp:dev-server-manifest',
 
 		configResolved( config ) {
 			const { base, build, plugins, server } = config;
