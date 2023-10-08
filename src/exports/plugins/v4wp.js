@@ -10,11 +10,11 @@ import { dev_server_manifest } from './dev-server-manifest.js';
  *
  * @type {(options: Options) => import('vite').PluginOption[]}
  */
-export function wp( options = {} ) {
+export function v4wp( options = {} ) {
 	const { input = 'app/src/main.js', outDir = 'app/dist' } = options;
 
 	/** @type { import('vite').Plugin } */
-	const config_plugin = {
+	const plugin = {
 		name: 'v4wp:config',
 		enforce: 'pre',
 
@@ -36,5 +36,5 @@ export function wp( options = {} ) {
 		},
 	};
 
-	return [ config_plugin, dev_server_config(), dev_server_manifest() ];
+	return [ plugin, dev_server_config(), dev_server_manifest() ];
 }

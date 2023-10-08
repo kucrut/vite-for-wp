@@ -7,9 +7,9 @@
 
 import { createLogger, mergeConfig } from 'vite';
 
+import { v4wp } from './plugins/v4wp.js';
 import { dev_server_config } from './plugins/dev-server-config.js';
 import { dev_server_manifest } from './plugins/dev-server-manifest.js';
-import { wp } from './plugins/wp.js';
 
 /**
  * Create vite config
@@ -30,7 +30,7 @@ export default function create_config( input, out_dir, extra_config ) {
 	/** @type {UserConfig} */
 	let config = {
 		clearScreen: false,
-		plugins: [ wp( { input, outDir: out_dir } ), dev_server_config(), dev_server_manifest() ],
+		plugins: [ v4wp( { input, outDir: out_dir } ), dev_server_config(), dev_server_manifest() ],
 	};
 
 	if ( extra_config ) {
