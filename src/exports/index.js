@@ -14,7 +14,7 @@ import { dev_server_manifest } from './plugins/dev-server-manifest.js';
  * @type {(options: Options) => import('vite').PluginOption[]}
  */
 export function v4wp( options = {} ) {
-	const { input = 'app/src/main.js', outDir = 'app/dist' } = options;
+	const { input = 'src/main.js', outDir } = options;
 
 	/** @type { import('vite').Plugin } */
 	const plugin = {
