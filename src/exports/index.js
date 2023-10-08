@@ -2,17 +2,50 @@
 /** @typedef {import('vite').UserConfig} UserConfig */
 /** @typedef {Record< string, any >} ExtraConfig */
 /** @typedef {ResolvedConfig[ 'build' ][ 'rollupOptions' ][ 'input' ]} InputOption */
-
-// See https://vitejs.dev/config/
+/** @typedef {{input?: InputOption, outDir?: ResolvedConfig['build']['outDir']}} Options */
 
 import { createLogger, mergeConfig } from 'vite';
-
-import { v4wp } from './plugins/v4wp.js';
 import { dev_server_config } from './plugins/dev-server-config.js';
 import { dev_server_manifest } from './plugins/dev-server-manifest.js';
 
 /**
+ * Vite for WP
+ *
+ * @type {(options: Options) => import('vite').PluginOption[]}
+ */
+export function v4wp( options = {} ) {
+	const { input = 'app/src/main.js', outDir = 'app/dist' } = options;
+
+	/** @type { import('vite').Plugin } */
+	const plugin = {
+		name: 'v4wp:config',
+		enforce: 'pre',
+
+		async config() {
+			return {
+				base: './',
+				build: {
+					outDir,
+					emptyOutDir: true,
+					manifest: true,
+					modulePreload: false,
+					rollupOptions: { input },
+					sourcemap: true,
+				},
+				css: {
+					devSourcemap: true,
+				},
+			};
+		},
+	};
+
+	return [ plugin, dev_server_config(), dev_server_manifest() ];
+}
+
+/**
  * Create vite config
+ *
+ * @deprecated
  *
  * @type {(input: InputOption, out_dir: string, extra_config?: ExtraConfig) => UserConfig}
  * @param {InputOption}  input        Input file(s).
