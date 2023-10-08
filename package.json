@@ -35,10 +35,14 @@
 		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependencies": {
+		"rollup-plugin-external-globals": "^0.8.0",
 		"vite": "^4.4.11",
 		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependenciesMeta": {
+		"rollup-plugin-external-globals": {
+			"optional": true
+		},
 		"vite-plugin-external": {
 			"optional": true
 		}
