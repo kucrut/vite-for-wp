@@ -30,7 +30,8 @@
 		"eslint-plugin-prettier": "^5.0.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
 		"typescript": "^5.2.2",
-		"vite": "^4.4.11"
+		"vite": "^4.4.11",
+		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependencies": {
 		"vite": "^4.4.11"
