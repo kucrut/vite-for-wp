@@ -34,7 +34,13 @@
 		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependencies": {
-		"vite": "^4.4.11"
+		"vite": "^4.4.11",
+		"vite-plugin-external": "^4.0.1"
+	},
+	"peerDependenciesMeta": {
+		"vite-plugin-external": {
+			"optional": true
+		}
 	},
 	"exports": {
 		"./package.json": "./package.json",
