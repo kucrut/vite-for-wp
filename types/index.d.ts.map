@@ -11,11 +11,13 @@
 	],
 	"sources": [
 		"../src/exports/index.js",
+		"../src/exports/plugins/wp-scripts.js",
 		"../src/exports/utils/choose-port.js"
 	],
 	"sourcesContent": [
 		null,
+		null,
 		null
 	],
-	"mappings": ";;;aAA6BA,cAAcA;aACdC,UAAUA;aACFC,WAAWA;aACuBC,WAAWA;aACDC,OAAOA;;;;;;;;;;;;;;MCJxCC,iBAAiBA"
+	"mappings": ";;;aAA6BA,cAAcA;aACdC,UAAUA;aACFC,WAAWA;aACuBC,WAAWA;aACDC,OAAOA;;;;;;;;;;MCJjCA,OAAOA;;;;;;;;MCAdC,iBAAiBA"
 }
