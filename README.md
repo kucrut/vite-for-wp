@@ -128,49 +128,38 @@ You can now run `npm run dev` when developing your plugin/theme and run `npm run
 
 ### External Dependencies
 
-If your JS package depends on one or more WordPress modules (eg. `@wordpress/i18n`), you can define them as externals with the help of `rollup-plugin-external-globals`.
+If your package depends on one or more scripts registered by WordPress (eg. `jquery`, `react`, `@wordpress/i18n`, etc.) and you want to exclude them from the final build, add `wp_scripts()` to the list of Vite's plugins. But first, install the required dependencies:
 
 ```sh
-npm add -D rollup-plugin-external-globals
+npm add -D rollup-plugin-external-globals vite-plugin-external
 ```
 
 For example, to externalise `react` and `react-dom` packages:
 
 ```js
 // vite.config.js
-import { defineConfig } from 'vite';
-import { wp_globals } from '@kucrut/vite-for-wp/utils';
-import create_config from '@kucrut/vite-for-wp';
-import external_globals from 'rollup-plugin-external-globals';
+import { v4wp } from '@kucrut/vite-for-wp';
+import { wp_scripts } from '@kucrut/vite-for-wp/plugins';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig( ( { command } ) => {
-	if ( command === 'serve' ) {
-		return create_config( 'js/src/main.jsx', 'js/dist', {
-			plugins: [ react() ],
-		} );
-	}
-
-	return create_config( 'js/src/main.jsx', 'js/dist', {
-		plugins: [
-			react(),
-			external_globals( {
-				...wp_globals(),
-			} ),
-		],
-		build: {
-			rollupOptions: {
-				external: [ 'react', 'react-dom' ],
-				output: {
-					globals: wp_globals(),
-				},
-			},
-		},
-	} );
-} );
+export default {
+	plugins: [
+		v4wp( {
+			input: 'js/src/main.js',
+			outDir: 'js/dist',
+		} ),
+		wp_scripts(),
+		react( {
+			jsxRuntime: 'classic',
+		} ),
+	],
+};
 ```
 
-Note that `react` and `react-dom` packages still need to be installed as dev dependencies and added to the `dependencies` array when enqueueing the script (see example above).
+**Special Notes for React**
+
+-   `react` and `react-dom` packages still need to be installed as your package's dev dependencies as they're used by `@vitejs/plugin-react`.
+-   `react` and `react-dom` should be added to the `dependencies` array when enqueueing the script (see example above).
 
 ## Example plugins
 
