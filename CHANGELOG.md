@@ -1,5 +1,16 @@
 # @kucrut/vite-for-wp
 
+## 0.7.0
+
+### Minor Changes
+
+-   56bce53: Introduce wp_scripts() plugin to externalise scripts already registered by WP core.
+-   08ceb4f: Provide v4wp plugin, deprecate create_config()
+
+### Patch Changes
+
+-   961d00b: Update prettier
+
 ## 0.6.2
 
 ### Patch Changes
