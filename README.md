@@ -58,7 +58,6 @@ Feel free to [customise the configuration](https://vitejs.dev/config/) to add pl
 ```js
 // vite.config.js
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { v4wp } from '@kucrut/vite-for-wp';
 import react from '@vitejs/plugin-react';
 
@@ -145,7 +144,7 @@ import react from '@vitejs/plugin-react';
 export default {
 	plugins: [
 		v4wp( {
-			input: 'js/src/main.js',
+			input: 'js/src/main.jsx',
 			outDir: 'js/dist',
 		} ),
 		wp_scripts(),
