@@ -21,9 +21,9 @@
 	],
 	"devDependencies": {
 		"@changesets/cli": "^2.26.2",
-		"@types/node": "^20.8.3",
-		"@typescript-eslint/eslint-plugin": "^6.7.4",
-		"@typescript-eslint/parser": "^6.7.4",
+		"@types/node": "^20.8.4",
+		"@typescript-eslint/eslint-plugin": "^6.7.5",
+		"@typescript-eslint/parser": "^6.7.5",
 		"@wordpress/eslint-plugin": "^17.0.0",
 		"dts-buddy": "^0.2.5",
 		"eslint": "^8.51.0",
