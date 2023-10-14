@@ -5,8 +5,7 @@
 /** @typedef {{input?: InputOption, outDir?: ResolvedConfig['build']['outDir']}} Options */
 
 import { createLogger, mergeConfig } from 'vite';
-import { dev_server_config } from './plugins/dev-server.js/index.js';
-import { dev_server_manifest } from './plugins/dev-server-manifest.js';
+import { dev_server } from './plugins/dev-server.js';
 
 /**
  * Vite for WP
@@ -39,7 +38,7 @@ export function v4wp( options = {} ) {
 		},
 	};
 
-	return [ plugin, dev_server_config(), dev_server_manifest() ];
+	return [ plugin, dev_server() ];
 }
 
 /**
