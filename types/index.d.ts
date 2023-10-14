@@ -12,8 +12,7 @@ declare module '@kucrut/vite-for-wp' {
 }
 
 declare module '@kucrut/vite-for-wp/plugins' {
-	export function dev_server_config(): import('vite').Plugin;
-	export function dev_server_manifest(): import('vite').Plugin;
+	export function dev_server(): import('vite').Plugin;
 	export function wp_scripts(options?: Options): import('vite').PluginOption[];
 	type Options = {
 		extraScripts?: Record<string, string>;
