@@ -18,15 +18,15 @@ export function dev_server() {
 
 		async config( config ) {
 			const { server = {} } = config;
-			let { host = 'localhost', port = 5173, ...rest_server } = server;
+			let { host = 'localhost', port = 5173, ...server_config } = server;
 
 			// We need actual host name or IP address for choose_port() to work.
 			if ( typeof host === 'boolean' ) {
 				host = '0.0.0.0';
 			}
 
-			const hmr_protocol = rest_server.https ? 'wss' : 'ws';
-			const server_protocol = rest_server.https ? 'https' : 'http';
+			const hmr_protocol = server_config.https ? 'wss' : 'ws';
+			const server_protocol = server_config.https ? 'https' : 'http';
 
 			// Ensure chosen port is available because we need to enable strictPort below.
 			// If the chosen port is already in use, a free one will be selected.
@@ -37,7 +37,7 @@ export function dev_server() {
 
 			return {
 				server: {
-					...rest_server,
+					...server_config,
 					host,
 					origin,
 					port,
