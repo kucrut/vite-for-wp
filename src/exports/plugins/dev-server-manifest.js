@@ -25,10 +25,6 @@ export function dev_server_manifest() {
 				plugins: plugins_to_check.filter( i => plugins.some( ( { name } ) => name === i ) ),
 			};
 
-			if ( ! fs.existsSync( build.outDir ) ) {
-				fs.mkdirSync( build.outDir );
-			}
-
 			const prod_manifest_file = build.outDir + '/manifest.json';
 
 			// Remove build manifest as the PHP helper uses it to determine
@@ -39,6 +35,7 @@ export function dev_server_manifest() {
 
 			dev_manifest_file = build.outDir + '/vite-dev-server.json';
 
+			fs.mkdirSync( build.outDir, { recursive: true } );
 			fs.writeFileSync( dev_manifest_file, JSON.stringify( data ), 'utf8' );
 		},
 
