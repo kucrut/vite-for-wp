@@ -62,7 +62,7 @@ export default function create_config( input, out_dir, extra_config ) {
 	/** @type {UserConfig} */
 	let config = {
 		clearScreen: false,
-		plugins: [ v4wp( { input, outDir: out_dir } ), dev_server_config(), dev_server_manifest() ],
+		plugins: [ v4wp( { input, outDir: out_dir } ), dev_server() ],
 	};
 
 	if ( extra_config ) {
