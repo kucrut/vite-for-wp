@@ -5,8 +5,7 @@
 /** @typedef {{input?: InputOption, outDir?: ResolvedConfig['build']['outDir']}} Options */
 
 import { createLogger, mergeConfig } from 'vite';
-import { dev_server_config } from './plugins/dev-server-config.js';
-import { dev_server_manifest } from './plugins/dev-server-manifest.js';
+import { dev_server } from './plugins/dev-server.js';
 
 /**
  * Vite for WP
@@ -39,7 +38,7 @@ export function v4wp( options = {} ) {
 		},
 	};
 
-	return [ plugin, dev_server_config(), dev_server_manifest() ];
+	return [ plugin, dev_server() ];
 }
 
 /**
@@ -63,7 +62,7 @@ export default function create_config( input, out_dir, extra_config ) {
 	/** @type {UserConfig} */
 	let config = {
 		clearScreen: false,
-		plugins: [ v4wp( { input, outDir: out_dir } ), dev_server_config(), dev_server_manifest() ],
+		plugins: [ v4wp( { input, outDir: out_dir } ), dev_server() ],
 	};
 
 	if ( extra_config ) {
