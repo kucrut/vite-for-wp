@@ -1,5 +1,3 @@
-/* global process:false */
-
 import fs from 'fs';
 
 /**
