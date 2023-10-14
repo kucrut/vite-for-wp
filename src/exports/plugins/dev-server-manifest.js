@@ -10,6 +10,8 @@ import fs from 'fs';
  */
 export function dev_server_manifest() {
 	const pluginsToCheck = [ 'vite:react-refresh' ];
+	/** @type {string} */
+	let devManifestFile;
 
 	return {
 		apply: 'serve',
@@ -37,20 +39,15 @@ export function dev_server_manifest() {
 				fs.rmSync( prodManifestFile );
 			}
 
-			const devManifestFile = build.outDir + '/vite-dev-server.json';
-
-			const cleanUp = () => {
-				if ( fs.existsSync( devManifestFile ) ) {
-					fs.rmSync( devManifestFile );
-				}
-
-				process.exit();
-			};
+			devManifestFile = build.outDir + '/vite-dev-server.json';
 
 			fs.writeFileSync( devManifestFile, JSON.stringify( data ), 'utf8' );
+		},
 
-			process.once( 'SIGINT', cleanUp );
-			process.once( 'SIGTERM', cleanUp );
+		configureServer( server ) {
+			server.httpServer?.once( 'close', () => {
+				fs.rmSync( devManifestFile );
+			} );
 		},
 	};
 }
