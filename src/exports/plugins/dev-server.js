@@ -2,12 +2,12 @@ import { mergeConfig } from 'vite';
 import { choose_port } from '../utils/choose-port.js';
 
 /**
- * Dev server configuration plugin
+ * Dev server plugin
  *
  * @type {() => import('vite').Plugin}
  * @return {import('vite').Plugin} Plugin object.
  */
-export function dev_server_config() {
+export function dev_server() {
 	return {
 		apply: 'serve',
 		name: 'v4wp:dev-server',
