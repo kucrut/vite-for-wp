@@ -5,6 +5,7 @@
 		"plugin:@wordpress/eslint-plugin/esnext",
 		"plugin:@wordpress/eslint-plugin/jsdoc"
 	],
+	"env": { "node": true },
 	"parser": "@typescript-eslint/parser",
 	"plugins": [ "@typescript-eslint" ],
 	"rules": {
