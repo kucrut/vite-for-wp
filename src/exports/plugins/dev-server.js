@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import { mergeConfig } from 'vite';
 import { choose_port } from '../utils/choose-port.js';
 
 /**
@@ -36,7 +35,7 @@ export function dev_server() {
 			// This will be used by the PHP helper.
 			const origin = `${ server_protocol }://${ host }:${ port }`;
 
-			return mergeConfig( config, {
+			return {
 				server: {
 					...rest_server,
 					host,
@@ -49,7 +48,7 @@ export function dev_server() {
 						protocol: hmr_protocol,
 					},
 				},
-			} );
+			};
 		},
 
 		configResolved( config ) {
