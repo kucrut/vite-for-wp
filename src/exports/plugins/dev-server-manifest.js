@@ -17,6 +17,11 @@ export function dev_server_manifest() {
 
 		configResolved( config ) {
 			const { base, build, plugins, server } = config;
+			const prod_manifest_file = build.outDir + '/manifest.json';
+
+			// Remove build manifest as the PHP helper uses it to determine
+			// which manifest to load when enqueueing assets.
+			fs.rmSync( prod_manifest_file, { force: true } );
 
 			const data = {
 				base,
@@ -24,14 +29,6 @@ export function dev_server_manifest() {
 				port: server.port,
 				plugins: plugins_to_check.filter( i => plugins.some( ( { name } ) => name === i ) ),
 			};
-
-			const prod_manifest_file = build.outDir + '/manifest.json';
-
-			// Remove build manifest as the PHP helper uses it to determine
-			// which manifest to load when enqueueing assets.
-			if ( fs.existsSync( prod_manifest_file ) ) {
-				fs.rmSync( prod_manifest_file );
-			}
 
 			dev_manifest_file = build.outDir + '/vite-dev-server.json';
 
