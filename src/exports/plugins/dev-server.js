@@ -72,11 +72,18 @@ export function dev_server() {
 			dev_manifest_file = build.outDir + '/vite-dev-server.json';
 
 			fs.mkdirSync( build.outDir, { recursive: true } );
-			fs.writeFileSync( dev_manifest_file, dev_manifest_data, 'utf8' );
 		},
 
-		configureServer( server ) {
-			server.httpServer?.once( 'close', () => {
+		configureServer( { httpServer } ) {
+			if ( ! httpServer ) {
+				return;
+			}
+
+			httpServer.on( 'listening', () => {
+				fs.writeFileSync( dev_manifest_file, dev_manifest_data, 'utf8' );
+			} );
+
+			httpServer.on( 'close', () => {
 				fs.rmSync( dev_manifest_file, { force: true } );
 			} );
 		},
