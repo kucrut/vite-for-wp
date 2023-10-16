@@ -66,6 +66,9 @@
 		"src",
 		"types"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"eslint:check": "eslint --ext .cjs,.js,.ts .",
 		"generate:types": "node scripts/generate-types.js",
