@@ -30,7 +30,12 @@ Create `vite.config.js`:
 import { v4wp } from '@kucrut/vite-for-wp';
 
 export default {
-	plugins: [ v4wp( { input: 'js/src/main.ts', outDir: 'js/dist' } ) ],
+	plugins: [
+		v4wp( {
+			input: 'js/src/main.ts', // Optional, defaults to 'src/main.js'.
+			outDir: 'js/dist', // Optional, defaults to 'dist'.
+		} ),
+	],
 };
 ```
 
@@ -52,6 +57,8 @@ export default {
 	],
 };
 ```
+
+Refer to Rollup documentation on how to set entrypoints: https://rollupjs.org/configuration-options/#input
 
 Feel free to [customise the configuration](https://vitejs.dev/config/) to add plugins, use https, etc:
 

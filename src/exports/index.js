@@ -10,17 +10,17 @@ import { dev_server } from './plugins/dev-server.js';
 /**
  * Vite for WP
  *
- * @type {(options: Options) => import('vite').PluginOption[]}
+ * @type {(options?: Options) => import('vite').PluginOption[]}
  */
 export function v4wp( options = {} ) {
-	const { input = 'src/main.js', outDir } = options;
+	const { input, outDir } = options;
 
 	/** @type { import('vite').Plugin } */
 	const plugin = {
 		name: 'v4wp:config',
 		enforce: 'pre',
 
-		async config() {
+		config() {
 			return {
 				base: './',
 				build: {
