@@ -1,5 +1,5 @@
 declare module '@kucrut/vite-for-wp' {
-	export function v4wp(options: Options): import('vite').PluginOption[];
+	export function v4wp(options?: Options): import('vite').PluginOption[];
 	export default function create_config(input: InputOption, out_dir: string, extra_config?: ExtraConfig): UserConfig;
 	export type ResolvedConfig = import('vite').ResolvedConfig;
 	export type UserConfig = import('vite').UserConfig;
