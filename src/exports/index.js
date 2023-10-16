@@ -20,7 +20,7 @@ export function v4wp( options = {} ) {
 		name: 'v4wp:config',
 		enforce: 'pre',
 
-		async config() {
+		config() {
 			return {
 				base: './',
 				build: {
