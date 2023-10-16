@@ -2,22 +2,21 @@
 	"version": 3,
 	"file": "index.d.ts",
 	"names": [
-		"ResolvedConfig",
 		"UserConfig",
-		"ExtraConfig",
-		"InputOption",
-		"Options",
-		"ChoosePortOptions"
+		"Input",
+		"OutDir",
+		"Plugin",
+		"WPScriptsOptions"
 	],
 	"sources": [
 		"../src/exports/index.js",
 		"../src/exports/plugins/wp-scripts.js",
-		"../src/exports/utils/choose-port.js"
+		"../src/exports/plugins/wp-scripts.d.ts"
 	],
 	"sourcesContent": [
 		null,
 		null,
 		null
 	],
-	"mappings": ";;;aAA6BA,cAAcA;aACdC,UAAUA;aACFC,WAAWA;aACuBC,WAAWA;aACDC,OAAOA;;;;;;;;;MCJjCA,OAAOA;;;;;;;;MCAdC,iBAAiBA"
+	"mappings": ";;;aAG6BA,UAAUA;aACyCC,KAAKA;aACrBC,MAAMA;aAC3BC,MAAMA;;;;;;;;;;;;;;;;;;;MCFNA,MAAMA;;;;MCCrCC,gBAAgBA"
 }
