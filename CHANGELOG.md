@@ -1,5 +1,15 @@
 # @kucrut/vite-for-wp
 
+## 0.7.1
+
+### Patch Changes
+
+-   461687b: Merge dev server plugins
+-   ad81a04: Make v4wp options optional
+-   c755432: Ensure dev server manifest is created when the server (re)starts and deleted when it's stopped.
+-   e2212e3: Improve JS doc blocks.
+-   dc71bde: Dev server manifest plugin: Improve files-related operation
+
 ## 0.7.0
 
 ### Minor Changes
