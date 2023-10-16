@@ -13,7 +13,7 @@ import { dev_server } from './plugins/dev-server.js';
  * @type {(options?: Options) => import('vite').PluginOption[]}
  */
 export function v4wp( options = {} ) {
-	const { input = 'src/main.js', outDir } = options;
+	const { input, outDir } = options;
 
 	/** @type { import('vite').Plugin } */
 	const plugin = {
