@@ -6,5 +6,5 @@
  * @return {string} Camel-cased string.
  */
 export function camel_case_dash( str ) {
-	return str.replace( /-([a-z])/g, ( match, letter ) => letter.toUpperCase() );
+	return str.replace( /-([a-z])/g, ( _, letter ) => letter.toUpperCase() );
 }
