@@ -10,6 +10,8 @@ import { choose_port } from '../utils/choose-port.js';
 export function dev_server() {
 	const plugins_to_check = [ 'vite:react-refresh' ];
 	/** @type {string} */
+	let dev_manifest_data;
+	/** @type {string} */
 	let dev_manifest_file;
 
 	return {
@@ -66,15 +68,23 @@ export function dev_server() {
 				plugins: plugins_to_check.filter( i => plugins.some( ( { name } ) => name === i ) ),
 			};
 
+			dev_manifest_data = JSON.stringify( data );
 			dev_manifest_file = build.outDir + '/vite-dev-server.json';
 
 			fs.mkdirSync( build.outDir, { recursive: true } );
-			fs.writeFileSync( dev_manifest_file, JSON.stringify( data ), 'utf8' );
 		},
 
-		configureServer( server ) {
-			server.httpServer?.once( 'close', () => {
-				fs.rmSync( dev_manifest_file );
+		configureServer( { httpServer } ) {
+			if ( ! httpServer ) {
+				return;
+			}
+
+			httpServer.on( 'listening', () => {
+				fs.writeFileSync( dev_manifest_file, dev_manifest_data, 'utf8' );
+			} );
+
+			httpServer.on( 'close', () => {
+				fs.rmSync( dev_manifest_file, { force: true } );
 			} );
 		},
 	};
