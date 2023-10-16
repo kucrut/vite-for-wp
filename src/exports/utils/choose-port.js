@@ -1,6 +1,13 @@
-/** @typedef {{ host?: string; port: number; }} ChoosePortOptions */
-
 import { createServer } from 'net';
+
+/**
+ * choose_port options
+ *
+ * @typedef ChoosePortOptions
+ *
+ * @property {string=} [host=localhost] Host name or IP address, defaults to 'localhost'.
+ * @property {number=} [port=5173]      Preferred port number, defaults to 5173
+ */
 
 /**
  * Choose port
@@ -11,26 +18,26 @@ import { createServer } from 'net';
  * @param {ChoosePortOptions} options Options.
  * @return {Promise<number>}  Chosen port.
  */
-export async function choose_port( options = { port: 3000, host: 'localhost' } ) {
+export async function choose_port( options = {} ) {
 	const server = createServer();
 
 	return new Promise( ( resolve, reject ) => {
-		let { port, host } = options;
+		let { host = 'localhost', port = 5173 } = options;
 
-		/** @param {Error & { code?: string }} e */
-		const onError = e => {
-			if ( e.code === 'EADDRINUSE' ) {
+		/** @param {Error & { code?: string }} error */
+		const handle_error = error => {
+			if ( error.code === 'EADDRINUSE' ) {
 				server.listen( ++port, host );
 			} else {
-				server.removeListener( 'error', onError );
-				reject( e );
+				server.removeListener( 'error', handle_error );
+				reject( error );
 			}
 		};
 
-		server.on( 'error', onError );
+		server.on( 'error', handle_error );
 
 		server.listen( port, host, () => {
-			server.removeListener( 'error', onError );
+			server.removeListener( 'error', handle_error );
 			server.close();
 			resolve( port );
 		} );
