@@ -10,6 +10,7 @@ declare( strict_types=1 );
 namespace Kucrut\Vite;
 
 use Exception;
+use WP_HTML_Tag_Processor;
 
 const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
 
@@ -96,6 +97,7 @@ function filter_script_tag( string $handle ): void {
  * Add `type="module"` to a script tag
  *
  * @since 0.1.0
+ * @since 0.8.0 Use WP_HTML_Tag_Processor.
  *
  * @param string $target_handle Handle of the script being targeted by the filter callback.
  * @param string $tag           Original script tag.
@@ -108,20 +110,13 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
 		return $tag;
 	}
 
-	$attribute = 'type="module"';
-	$script_type_regex = '/type=(["\'])([\w\/]+)(["\'])/';
+	$processor = new WP_HTML_Tag_Processor( $tag );
 
-	if ( preg_match( $script_type_regex, $tag ) ) {
-		// Pre-HTML5.
-		$tag = preg_replace( $script_type_regex, $attribute, $tag );
-	} else {
-		$pattern = $handle === VITE_CLIENT_SCRIPT_HANDLE
-			? '#(<script)(.*)#'
-			: '#(<script)(.*></script>)#';
-		$tag = preg_replace( $pattern, sprintf( '$1 %s$2', $attribute ), $tag );
+	if ( $processor->next_tag( 'script' ) ) {
+		$processor->set_attribute( 'type', 'module' );
 	}
 
-	return $tag;
+	return $processor->get_updated_html();
 }
 
 /**
@@ -164,28 +159,53 @@ function register_vite_client_script( object $manifest ): void {
 }
 
 /**
- * Get react refresh script preamble
+ * Inject react-refresh preamble script once, if needed
  *
- * @param string $src React refresh script source URL.
- * @return string
+ * @since 0.8.0
+ *
+ * @param object $manifest Asset manifest.
+ * @return void
  */
-function get_react_refresh_script_preamble( string $src ): string {
+function inject_react_refresh_preamble_script( object $manifest ): void {
+	static $is_react_refresh_preamble_printed = false;
+
+	if ( $is_react_refresh_preamble_printed ) {
+		return;
+	}
+
+	if ( ! in_array( 'vite:react-refresh', $manifest->data->plugins, true ) ) {
+		return;
+	}
+
+	$react_refresh_script_src = generate_development_asset_src( $manifest, '@react-refresh' );
+	$script_position = 'after';
 	$script = <<< EOS
-import RefreshRuntime from "{$src}";
+import RefreshRuntime from "{$react_refresh_script_src}";
 RefreshRuntime.injectIntoGlobalHook(window);
 window.\$RefreshReg$ = () => {};
 window.\$RefreshSig$ = () => (type) => type;
 window.__vite_plugin_react_preamble_installed__ = true;
 EOS;
 
-	return $script;
+	wp_add_inline_script( VITE_CLIENT_SCRIPT_HANDLE, $script, $script_position );
+	add_filter(
+		'wp_inline_script_attributes',
+		function ( array $attributes ) use ( $script_position ): array {
+			if ( isset( $attributes['id'] ) && $attributes['id'] === VITE_CLIENT_SCRIPT_HANDLE . "-js-{$script_position}" ) {
+				$attributes['type'] = 'module';
+			}
+
+			return $attributes;
+		}
+	);
+
+	$is_react_refresh_preamble_printed = true;
 }
 
 /**
  * Load development asset
  *
  * @since 0.1.0
- * @since 0.8.0 Only print react-refresh preamble script once.
  *
  * @param object $manifest Asset manifest.
  * @param string $entry    Entrypoint to enqueue.
@@ -194,26 +214,13 @@ EOS;
  * @return array|null Array containing registered scripts or NULL if the none was registered.
  */
 function load_development_asset( object $manifest, string $entry, array $options ): ?array {
-	static $is_react_refresh_preamble_printed = false;
-
 	register_vite_client_script( $manifest );
+	inject_react_refresh_preamble_script( $manifest );
 
 	$dependencies = array_merge(
 		[ VITE_CLIENT_SCRIPT_HANDLE ],
 		$options['dependencies']
 	);
-
-	if ( ! $is_react_refresh_preamble_printed && in_array( 'vite:react-refresh', $manifest->data->plugins, true ) ) {
-		$react_refresh_script_src = generate_development_asset_src( $manifest, '@react-refresh' );
-
-		wp_add_inline_script(
-			VITE_CLIENT_SCRIPT_HANDLE,
-			get_react_refresh_script_preamble( $react_refresh_script_src ),
-			'after'
-		);
-
-		$is_react_refresh_preamble_printed = true;
-	}
 
 	$src = generate_development_asset_src( $manifest, $entry );
 
