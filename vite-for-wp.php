@@ -207,6 +207,17 @@ function load_development_asset( object $manifest, string $entry, array $options
 			'after'
 		);
 
+		add_filter(
+			'wp_inline_script_attributes',
+			function ( array $attributes ): array {
+				if ( isset( $attributes['id'] ) && $attributes['id'] === VITE_CLIENT_SCRIPT_HANDLE . '-js-after' ) {
+					$attributes['type'] = 'module';
+				}
+
+				return $attributes;
+			}
+		);
+
 		$is_react_refresh_preamble_printed = true;
 	}
 
