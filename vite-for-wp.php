@@ -17,6 +17,7 @@ const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
  * Get manifest data
  *
  * @since 0.1.0
+ * @since 0.8.0 Use wp_json_file_decode().
  *
  * @param string $manifest_dir Path to manifest directory.
  *
@@ -25,13 +26,14 @@ const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
  * @return object Object containing manifest type and data.
  */
 function get_manifest( string $manifest_dir ): object {
+	$dev_manifest = 'vite-dev-server';
 	// Avoid repeatedly opening & decoding the same file.
 	static $manifests = [];
 
-	$file_names = [ 'manifest', 'vite-dev-server' ];
+	$file_names = [ 'manifest', $dev_manifest ];
 
 	foreach ( $file_names as $file_name ) {
-		$is_dev = $file_name === 'vite-dev-server';
+		$is_dev = $file_name === $dev_manifest;
 		$manifest_path = "{$manifest_dir}/{$file_name}.json";
 
 		if ( isset( $manifests[ $manifest_path ] ) ) {
@@ -49,17 +51,10 @@ function get_manifest( string $manifest_dir ): object {
 		throw new Exception( esc_html( sprintf( '[Vite] No manifest found in %s.', $manifest_dir ) ) );
 	}
 
-	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-	$manifest_content = file_get_contents( $manifest_path );
+	$manifest = wp_json_file_decode( $manifest_path );
 
-	if ( ! $manifest_content ) {
-		throw new Exception( esc_html( sprintf( '[Vite] Failed to read manifest %s.', $manifest_path ) ) );
-	}
-
-	$manifest = json_decode( $manifest_content );
-
-	if ( json_last_error() ) {
-		throw new Exception( esc_html( sprintf( '[Vite] Manifest %s contains invalid data.', $manifest_path ) ) );
+	if ( ! $manifest ) {
+		throw new Exception( esc_html( sprintf( '[Vite] Failed to read manifest file %s.', $manifest_path ) ) );
 	}
 
 	/**
