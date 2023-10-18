@@ -26,13 +26,14 @@ const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
  * @return object Object containing manifest type and data.
  */
 function get_manifest( string $manifest_dir ): object {
+	$dev_manifest = 'vite-dev-server';
 	// Avoid repeatedly opening & decoding the same file.
 	static $manifests = [];
 
-	$file_names = [ 'manifest', 'vite-dev-server' ];
+	$file_names = [ 'manifest', $dev_manifest ];
 
 	foreach ( $file_names as $file_name ) {
-		$is_dev = $file_name === 'vite-dev-server';
+		$is_dev = $file_name === $dev_manifest;
 		$manifest_path = "{$manifest_dir}/{$file_name}.json";
 
 		if ( isset( $manifests[ $manifest_path ] ) ) {
