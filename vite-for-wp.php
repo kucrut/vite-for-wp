@@ -173,7 +173,6 @@ function get_react_refresh_script_preamble( string $src ): string {
 	$script = <<< EOS
 import RefreshRuntime from "{$src}";
 RefreshRuntime.injectIntoGlobalHook(window);
-window.__VITE_IS_MODERN__ = true;
 window.\$RefreshReg$ = () => {};
 window.\$RefreshSig$ = () => (type) => type;
 window.__vite_plugin_react_preamble_installed__ = true;
