@@ -10,6 +10,7 @@ declare( strict_types=1 );
 namespace Kucrut\Vite;
 
 use Exception;
+use WP_HTML_Tag_Processor;
 
 const VITE_CLIENT_SCRIPT_HANDLE = 'vite-client';
 
@@ -96,6 +97,7 @@ function filter_script_tag( string $handle ): void {
  * Add `type="module"` to a script tag
  *
  * @since 0.1.0
+ * @since 0.8.0 Use WP_HTML_Tag_Processor.
  *
  * @param string $target_handle Handle of the script being targeted by the filter callback.
  * @param string $tag           Original script tag.
@@ -108,20 +110,13 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
 		return $tag;
 	}
 
-	$attribute = 'type="module"';
-	$script_type_regex = '/type=(["\'])([\w\/]+)(["\'])/';
+	$processor = new WP_HTML_Tag_Processor( $tag );
 
-	if ( preg_match( $script_type_regex, $tag ) ) {
-		// Pre-HTML5.
-		$tag = preg_replace( $script_type_regex, $attribute, $tag );
-	} else {
-		$pattern = $handle === VITE_CLIENT_SCRIPT_HANDLE
-			? '#(<script)(.*)#'
-			: '#(<script)(.*></script>)#';
-		$tag = preg_replace( $pattern, sprintf( '$1 %s$2', $attribute ), $tag );
+	if ( $processor->next_tag( 'script' ) ) {
+		$processor->set_attribute( 'type', 'module' );
 	}
 
-	return $tag;
+	return $processor->get_updated_html();
 }
 
 /**
