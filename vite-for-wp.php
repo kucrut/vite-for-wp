@@ -186,6 +186,7 @@ EOS;
  * Load development asset
  *
  * @since 0.1.0
+ * @since 0.8.0 Only print react-refresh preamble script once.
  *
  * @param object $manifest Asset manifest.
  * @param string $entry    Entrypoint to enqueue.
@@ -194,6 +195,8 @@ EOS;
  * @return array|null Array containing registered scripts or NULL if the none was registered.
  */
 function load_development_asset( object $manifest, string $entry, array $options ): ?array {
+	static $is_react_refresh_preamble_printed = false;
+
 	register_vite_client_script( $manifest );
 
 	$dependencies = array_merge(
@@ -201,13 +204,16 @@ function load_development_asset( object $manifest, string $entry, array $options
 		$options['dependencies']
 	);
 
-	if ( in_array( 'vite:react-refresh', $manifest->data->plugins, true ) ) {
+	if ( ! $is_react_refresh_preamble_printed && in_array( 'vite:react-refresh', $manifest->data->plugins, true ) ) {
 		$react_refresh_script_src = generate_development_asset_src( $manifest, '@react-refresh' );
+
 		wp_add_inline_script(
 			VITE_CLIENT_SCRIPT_HANDLE,
 			get_react_refresh_script_preamble( $react_refresh_script_src ),
 			'after'
 		);
+
+		$is_react_refresh_preamble_printed = true;
 	}
 
 	$src = generate_development_asset_src( $manifest, $entry );
