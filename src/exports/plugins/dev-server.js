@@ -88,14 +88,8 @@ export function dev_server( options = {} ) {
 			fs.writeFileSync( manifest_file, data, 'utf8' );
 		},
 
-		configureServer( { httpServer } ) {
-			if ( ! httpServer ) {
-				return;
-			}
-
-			httpServer.on( 'close', () => {
-				fs.rmSync( manifest_file, { force: true } );
-			} );
+		buildEnd() {
+			fs.rmSync( manifest_file, { force: true } );
 		},
 	};
 }
