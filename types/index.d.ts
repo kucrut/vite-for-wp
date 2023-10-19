@@ -21,7 +21,16 @@ declare module '@kucrut/vite-for-wp' {
 }
 
 declare module '@kucrut/vite-for-wp/plugins' {
-	export function dev_server(): import('vite').Plugin;
+	export function dev_server(options?: DevServerOptions): import('vite').Plugin;
+	/**
+	 * Dev Server Options
+	 */
+	type DevServerOptions = {
+		/**
+		 * Path to directory where the dev server manifest should be stored. Defaults to the value of `build.outDir` option.
+		 */
+		manifest_dir?: string | undefined;
+	};
 	export function wp_scripts(options?: WPScriptsOptions): Plugin;
 	type Plugin = import('vite').PluginOption;
 	/**
