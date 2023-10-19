@@ -75,12 +75,6 @@ export function dev_server( options = {} ) {
 				manifest_dir = build.outDir;
 			}
 
-			const prod_manifest_file = build.outDir + '/manifest.json';
-
-			// Remove build manifest as the PHP helper uses it to determine
-			// which manifest to load when enqueueing assets.
-			fs.rmSync( prod_manifest_file, { force: true } );
-
 			const data = {
 				base,
 				origin: server.origin,
