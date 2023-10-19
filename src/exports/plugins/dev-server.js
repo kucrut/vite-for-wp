@@ -27,6 +27,8 @@ export function dev_server( options = {} ) {
 	/** @type {string} */
 	let dev_manifest_file;
 
+	let { manifest_dir } = options;
+
 	return {
 		apply: 'serve',
 		name: 'v4wp:dev-server',
@@ -68,6 +70,11 @@ export function dev_server( options = {} ) {
 
 		configResolved( config ) {
 			const { base, build, plugins, server } = config;
+
+			if ( ! manifest_dir ) {
+				manifest_dir = build.outDir;
+			}
+
 			const prod_manifest_file = build.outDir + '/manifest.json';
 
 			// Remove build manifest as the PHP helper uses it to determine
