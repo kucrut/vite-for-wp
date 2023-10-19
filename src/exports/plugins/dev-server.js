@@ -22,6 +22,8 @@ import { choose_port } from '../utils/choose-port.js';
  */
 export function dev_server( options = {} ) {
 	const plugins_to_check = [ 'vite:react-refresh' ];
+	/** @type {import('vite').ResolvedConfig} */
+	let resolved_config;
 	/** @type {string} */
 	let dev_manifest_data;
 	/** @type {string} */
@@ -69,10 +71,10 @@ export function dev_server( options = {} ) {
 		},
 
 		configResolved( config ) {
-			const { base, build, plugins, server } = config;
+			resolved_config = config;
 
 			if ( ! manifest_dir ) {
-				manifest_dir = build.outDir;
+				manifest_dir = config.build.outDir;
 			}
 
 			const data = {
