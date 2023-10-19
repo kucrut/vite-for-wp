@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { choose_port } from '../utils/choose-port.js';
+import { join } from 'node:path';
 
 /**
  * Dev Server Options
@@ -22,14 +23,10 @@ import { choose_port } from '../utils/choose-port.js';
  */
 export function dev_server( options = {} ) {
 	const plugins_to_check = [ 'vite:react-refresh' ];
+	/** @type {string} */
+	let manifest_file;
 	/** @type {import('vite').ResolvedConfig} */
 	let resolved_config;
-	/** @type {string} */
-	let dev_manifest_data;
-	/** @type {string} */
-	let dev_manifest_file;
-
-	let { manifest_dir } = options;
 
 	return {
 		apply: 'serve',
@@ -72,22 +69,23 @@ export function dev_server( options = {} ) {
 
 		configResolved( config ) {
 			resolved_config = config;
+		},
 
-			if ( ! manifest_dir ) {
-				manifest_dir = config.build.outDir;
-			}
+		buildStart() {
+			const { base, build, plugins, server } = resolved_config;
 
-			const data = {
+			const data = JSON.stringify( {
 				base,
 				origin: server.origin,
 				port: server.port,
 				plugins: plugins_to_check.filter( i => plugins.some( ( { name } ) => name === i ) ),
-			};
+			} );
 
-			dev_manifest_data = JSON.stringify( data );
-			dev_manifest_file = build.outDir + '/vite-dev-server.json';
+			const manifest_dir = options.manifest_dir || build.outDir;
+			manifest_file = join( manifest_dir, '/vite-dev-server.json' );
 
-			fs.mkdirSync( build.outDir, { recursive: true } );
+			fs.mkdirSync( manifest_dir, { recursive: true } );
+			fs.writeFileSync( manifest_file, data, 'utf8' );
 		},
 
 		configureServer( { httpServer } ) {
@@ -95,12 +93,8 @@ export function dev_server( options = {} ) {
 				return;
 			}
 
-			httpServer.on( 'listening', () => {
-				fs.writeFileSync( dev_manifest_file, dev_manifest_data, 'utf8' );
-			} );
-
 			httpServer.on( 'close', () => {
-				fs.rmSync( dev_manifest_file, { force: true } );
+				fs.rmSync( manifest_file, { force: true } );
 			} );
 		},
 	};
