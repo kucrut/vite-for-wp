@@ -1,5 +1,3 @@
-import externals from 'vite-plugin-external';
-import globals from 'rollup-plugin-external-globals';
 import { wp_globals } from '../utils/wp-globals.js';
 
 /** @typedef {import('vite').PluginOption} Plugin */
@@ -18,11 +16,16 @@ import { wp_globals } from '../utils/wp-globals.js';
  * Provide easy access to built-in WordPress scripts and exclude them from the final build.
  *
  * @since 0.7.0
+ * @since 0.8.0 Import dependencies dynamically.
+ *
  * @type {(options?: WPScriptsOptions) => Plugin}
  * @param {WPScriptsOptions} options Plugin options.
- * @return {Plugin} Vite plugins objects.
+ * @return {Promise<Plugin>} Vite plugins objects.
  */
-export function wp_scripts( options = {} ) {
+export async function wp_scripts( options = {} ) {
+	const { default: externals } = await import( 'vite-plugin-external' );
+	const { default: globals } = await import( 'rollup-plugin-external-globals' );
+
 	const { extraScripts = {} } = options;
 
 	const scripts = {
