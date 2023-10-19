@@ -1,6 +1,6 @@
-import fs from 'node:fs';
 import { choose_port } from '../utils/choose-port.js';
 import { join } from 'node:path';
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 
 /**
  * Dev Server Options
@@ -82,14 +82,14 @@ export function dev_server( options = {} ) {
 			} );
 
 			const manifest_dir = options.manifest_dir || build.outDir;
-			manifest_file = join( manifest_dir, '/vite-dev-server.json' );
+			manifest_file = join( manifest_dir, 'vite-dev-server.json' );
 
-			fs.mkdirSync( manifest_dir, { recursive: true } );
-			fs.writeFileSync( manifest_file, data, 'utf8' );
+			mkdirSync( manifest_dir, { recursive: true } );
+			writeFileSync( manifest_file, data, 'utf8' );
 		},
 
 		buildEnd() {
-			fs.rmSync( manifest_file, { force: true } );
+			rmSync( manifest_file, { force: true } );
 		},
 	};
 }
