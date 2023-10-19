@@ -2,12 +2,25 @@ import fs from 'node:fs';
 import { choose_port } from '../utils/choose-port.js';
 
 /**
+ * Dev Server Options
+ *
+ * @typedef DevServerOptions
+ *
+ * @property {string=} manifest_dir Path to directory where the dev server manifest should be stored. Defaults to the value of `build.outDir` option.
+ */
+
+/**
  * Dev server plugin
  *
- * @type {() => import('vite').Plugin}
+ * @since 0.1.0
+ * @since 0.8.0 Accept options.
+ *
+ * @type {(options?: DevServerOptions) => import('vite').Plugin}
+ *
+ * @param {DevServerOptions=} options Plugin options.
  * @return {import('vite').Plugin} Plugin object.
  */
-export function dev_server() {
+export function dev_server( options = {} ) {
 	const plugins_to_check = [ 'vite:react-refresh' ];
 	/** @type {string} */
 	let dev_manifest_data;
