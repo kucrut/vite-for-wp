@@ -1,5 +1,18 @@
 # @kucrut/vite-for-wp
 
+## 0.8.0
+
+### Minor Changes
+
+-   da9b6e1: wp_scripts: Import dependencies dynamically.
+-   bafb3cb: Use WP_HTML_Tag_Processor to update script type attribute.
+-   28a3eb6: Accept options in dev_server, prioritise dev manifest over build one in PHP helper.
+
+### Patch Changes
+
+-   77a7da8: Use wp_json_file_decode() to read manifest file.
+-   3296971: Only print react-refresh preamble script once.
+
 ## 0.7.1
 
 ### Patch Changes
