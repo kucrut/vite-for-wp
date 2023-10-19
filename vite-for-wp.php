@@ -31,7 +31,7 @@ function get_manifest( string $manifest_dir ): object {
 	// Avoid repeatedly opening & decoding the same file.
 	static $manifests = [];
 
-	$file_names = [ 'manifest', $dev_manifest ];
+	$file_names = [ $dev_manifest, 'manifest' ];
 
 	foreach ( $file_names as $file_name ) {
 		$is_dev = $file_name === $dev_manifest;
