@@ -102,17 +102,24 @@ function filter_script_tag( string $handle ): void {
  * @param string $target_handle Handle of the script being targeted by the filter callback.
  * @param string $tag           Original script tag.
  * @param string $handle        Handle of the script that's currently being filtered.
+ * @param string $src           The sript src.
  *
  * @return string Script tag with attribute `type="module"` added.
  */
-function set_script_type_attribute( string $target_handle, string $tag, string $handle ): string {
+function set_script_type_attribute( string $target_handle, string $tag, string $handle, string $src ): string {
 	if ( $target_handle !== $handle ) {
 		return $tag;
 	}
 
 	$processor = new WP_HTML_Tag_Processor( $tag );
 
-	if ( $processor->next_tag( 'script' ) ) {
+	$script_fount = false;
+
+	do {
+		$script_fount = $processor->next_tag( 'script' );
+	} while ($processor->get_attribute( 'src' ) !== $src );
+
+	if ( $script_fount ) {
 		$processor->set_attribute( 'type', 'module' );
 	}
 
