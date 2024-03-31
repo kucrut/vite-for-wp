@@ -167,18 +167,18 @@ function register_vite_client_script( object $manifest ): void {
  * @return void
  */
 function inject_react_refresh_preamble_script( object $manifest ): void {
-	static $is_react_refresh_preamble_printed = false;
-
-	if ( $is_react_refresh_preamble_printed ) {
-		return;
-	}
-
 	if ( ! in_array( 'vite:react-refresh', $manifest->data->plugins, true ) ) {
 		return;
 	}
 
-	$react_refresh_script_src = generate_development_asset_src( $manifest, '@react-refresh' );
 	$script_position = 'after';
+	$inline_scripts = wp_scripts()->get_data( VITE_CLIENT_SCRIPT_HANDLE, $script_position );
+
+	if ( $inline_scripts[$script_position] && str_contains( $inline_scripts[$script_position], 'window.__vite_plugin_react_preamble_installed__' ) ) {
+		return;
+	}
+
+	$react_refresh_script_src = generate_development_asset_src( $manifest, '@react-refresh' );
 	$script = <<< EOS
 import RefreshRuntime from "{$react_refresh_script_src}";
 RefreshRuntime.injectIntoGlobalHook(window);
@@ -198,8 +198,6 @@ EOS;
 			return $attributes;
 		}
 	);
-
-	$is_react_refresh_preamble_printed = true;
 }
 
 /**
