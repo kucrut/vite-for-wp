@@ -172,9 +172,10 @@ function inject_react_refresh_preamble_script( object $manifest ): void {
 	}
 
 	$script_position = 'after';
+	$script_idx = $script_position === 'after' ? 1 : 0;
 	$inline_scripts = wp_scripts()->get_data( VITE_CLIENT_SCRIPT_HANDLE, $script_position );
 
-	if ( $inline_scripts[$script_position] && str_contains( $inline_scripts[$script_position], 'window.__vite_plugin_react_preamble_installed__' ) ) {
+	if ( $inline_scripts && $inline_scripts[ $script_idx ] && str_contains( $inline_scripts[ $script_idx ], 'window.__vite_plugin_react_preamble_installed__' ) ) {
 		return;
 	}
 
