@@ -40,7 +40,7 @@ export function v4wp( options = {} ) {
 				build: {
 					outDir,
 					emptyOutDir: true,
-					manifest: true,
+					manifest: 'manifest.json',
 					modulePreload: false,
 					rollupOptions: { input },
 					sourcemap: true,
