@@ -1,5 +1,17 @@
 # @kucrut/vite-for-wp
 
+## 0.9.0
+
+### Minor Changes
+
+-   d33de07: Support enqueuing split CSS chunks with multiple outputs. Props @netlas
+-   c4bc83a: Vite 5
+
+### Patch Changes
+
+-   6eb0bb8: ESLint 9
+-   b7b96a3: Fix script type modifier. Props @irshadahmad21
+
 ## 0.8.0
 
 ### Minor Changes
