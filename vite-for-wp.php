@@ -113,13 +113,13 @@ function set_script_type_attribute( string $target_handle, string $tag, string $
 
 	$processor = new WP_HTML_Tag_Processor( $tag );
 
-	$script_fount = false;
+	$script_found = false;
 
 	do {
-		$script_fount = $processor->next_tag( 'script' );
-	} while ($processor->get_attribute( 'src' ) !== $src );
+		$script_found = $processor->next_tag( 'script' );
+	} while ( $processor->get_attribute( 'src' ) !== $src );
 
-	if ( $script_fount ) {
+	if ( $script_found ) {
 		$processor->set_attribute( 'type', 'module' );
 	}
 
