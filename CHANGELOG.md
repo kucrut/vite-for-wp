@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.9.1
+
+### Patch Changes
+
+-   86a8495: Fix peer dependencies
+
 ## 0.9.0
 
 ### Minor Changes
