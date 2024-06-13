@@ -21,8 +21,11 @@
 	],
 	"devDependencies": {
 		"@changesets/cli": "^2.27.5",
+		"@eslint/js": "^9.4.0",
 		"@types/node": "^20.14.2",
 		"dts-buddy": "^0.4.7",
+		"eslint": "^9.4.0",
+		"eslint-config-prettier": "^9.1.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
 		"rollup-plugin-external-globals": "^0.8.0",
 		"typescript": "^5.4.5",
