@@ -28,9 +28,9 @@
 		"eslint-config-prettier": "^9.1.0",
 		"globals": "^15.4.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
-		"rollup-plugin-external-globals": "^0.8.0",
+		"rollup-plugin-external-globals": "^0.10.0",
 		"typescript": "^5.4.5",
-		"vite": "^4.4.11",
+		"vite": "^5.3.0",
 		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependencies": {
