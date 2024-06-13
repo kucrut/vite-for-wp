@@ -299,7 +299,6 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	if ( ! empty( $item->imports ) ) {
 		// Recursive inline function to deeply check for .css files.
 		$check_imports = function ( array $imports ) use ( &$check_imports, &$assets, $manifest, $url, $options ): void {
-
 			foreach ( $imports as $import ) {
 				$import_item = $manifest->data->{$import};
 
@@ -312,6 +311,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 				}
 			}
 		};
+
 		$check_imports( $item->imports );
 	}
 
@@ -342,7 +342,6 @@ function load_production_asset( object $manifest, string $entry, array $options 
  */
 function register_stylesheets( array &$assets, array $stylesheets, string $url, array $options ): void {
 	foreach ( $stylesheets as $css_file_path ) {
-
 		$slug = strtolower( trim( preg_replace( '/[^A-Za-z0-9-]+/', '-', pathinfo( $css_file_path, PATHINFO_FILENAME ) ), '-' ) );
 		// Including a slug based on the actual css file in the handle ensures it wont be registered more than once.
 		$style_handle = "{$options['handle']}-{$slug}";
