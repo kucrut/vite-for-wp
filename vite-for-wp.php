@@ -105,20 +105,14 @@ function filter_script_tag( string $handle ): void {
  *
  * @return string Script tag with attribute `type="module"` added.
  */
-function set_script_type_attribute( string $target_handle, string $tag, string $handle, string $src ): string {
+function set_script_type_attribute( string $target_handle, string $tag, string $handle ): string {
 	if ( $target_handle !== $handle ) {
 		return $tag;
 	}
 
 	$processor = new WP_HTML_Tag_Processor( $tag );
 
-	$script_fount = false;
-
-	do {
-		$script_fount = $processor->next_tag( 'script' );
-	} while ($processor->get_attribute( 'src' ) !== $src );
-
-	if ( $script_fount ) {
+	if ( $processor->next_tag( 'script' ) ) {
 		$processor->set_attribute( 'type', 'module' );
 	}
 
@@ -297,7 +291,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 
 	if ( ! empty( $item->imports ) ) {
 		// Recursive inline function to deeply check for .css files.
-		$check_imports = function( array $imports ) use ( &$check_imports, &$assets, $manifest, $url, $options ) : void {
+		$check_imports = function ( array $imports ) use ( &$check_imports, &$assets, $manifest, $url, $options ): void {
 
 			foreach ( $imports as $import ) {
 				$import_item = $manifest->data->{$import};
@@ -307,7 +301,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 				}
 
 				if ( ! empty( $import_item->css ) ) {
-					register_stylesheets($assets, $import_item->css, $url, $options);
+					register_stylesheets( $assets, $import_item->css, $url, $options );
 				}
 			}
 		};
@@ -315,7 +309,7 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	}
 
 	if ( ! empty( $item->css ) ) {
-		register_stylesheets($assets, $item->css, $url, $options);
+		register_stylesheets( $assets, $item->css, $url, $options );
 	}
 
 	/**
@@ -332,17 +326,17 @@ function load_production_asset( object $manifest, string $entry, array $options 
 }
 
 /**
- * Register stylesheet assets to wordpress and saves stylesheet handles for later enqueuing
+ * Register stylesheet assets to WordPress and saves stylesheet handles for later enqueuing
  *
- * @param array &$assets Reference to registered assets.
- * @param array $styelsheets List of stylesheets to register.
- * @param string $url Base URL to asset.
- * @param array $options Array of options.
+ * @param array  $assets      Reference to registered assets.
+ * @param array  $stylesheets List of stylesheets to register.
+ * @param string $url         Base URL to asset.
+ * @param array  $options     Array of options.
  */
-function register_stylesheets(array &$assets, array $stylesheets, string $url, array $options): void {
+function register_stylesheets( array &$assets, array $stylesheets, string $url, array $options ): void {
 	foreach ( $stylesheets as $css_file_path ) {
 
-		$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', pathinfo($css_file_path, PATHINFO_FILENAME)), '-'));
+		$slug = strtolower( trim( preg_replace( '/[^A-Za-z0-9-]+/', '-', pathinfo( $css_file_path, PATHINFO_FILENAME ) ), '-' ) );
 		// Including a slug based on the actual css file in the handle ensures it wont be registered more than once.
 		$style_handle = "{$options['handle']}-{$slug}";
 
@@ -470,4 +464,3 @@ function enqueue_asset( string $manifest_dir, string $entry, array $options ): b
 
 	return true;
 }
-
