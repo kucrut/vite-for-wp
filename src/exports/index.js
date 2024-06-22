@@ -4,6 +4,7 @@ import { dev_server } from './plugins/dev-server.js';
 /** @typedef {import('vite').UserConfig} UserConfig */
 /** @typedef {import('vite').ResolvedConfig['build']['rollupOptions']['input']} Input */
 /** @typedef {import('vite').ResolvedConfig['build']['outDir']} OutDir */
+/** @typedef {import('vite').ResolvedConfig['build']['sourcemap']} Sourcemap */
 /** @typedef {import('vite').PluginOption} Plugin */
 
 /**
@@ -13,6 +14,7 @@ import { dev_server } from './plugins/dev-server.js';
  *
  * @property {Input=}  input  Entry points (optional, defaults to 'src/main.js'). See https://rollupjs.org/configuration-options/#input
  * @property {OutDir=} outDir Output directory (optional, defaults to 'dist'). See https://vitejs.dev/config/build-options.html#build-outdir
+ * @property {Sourcemap=} sourcemap Generate sourcemap (optional, defaults to 'false'). See https://vitejs.dev/config/build-options.html#build-sourcemap
  */
 
 /**
@@ -27,7 +29,7 @@ import { dev_server } from './plugins/dev-server.js';
  * @return {Plugin} Vite plugin objects.
  */
 export function v4wp( options = {} ) {
-	const { input, outDir } = options;
+	const { input, outDir, sourcemap } = options;
 
 	/** @type {Plugin} */
 	const plugin = {
@@ -43,7 +45,7 @@ export function v4wp( options = {} ) {
 					manifest: 'manifest.json',
 					modulePreload: false,
 					rollupOptions: { input },
-					sourcemap: true,
+					sourcemap,
 				},
 				css: {
 					devSourcemap: true,
