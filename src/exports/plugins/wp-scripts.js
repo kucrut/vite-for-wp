@@ -57,8 +57,6 @@ export async function wp_scripts( options = {} ) {
 		externals( {
 			externals: scripts,
 		} ),
-		globals( scripts, {
-			include: [ '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
-		} ),
+		globals(scripts),
 	];
 }
