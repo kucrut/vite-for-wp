@@ -57,6 +57,6 @@ export async function wp_scripts( options = {} ) {
 		externals( {
 			externals: scripts,
 		} ),
-		globals(scripts),
+		globals( scripts ),
 	];
 }
