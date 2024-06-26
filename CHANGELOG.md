@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.9.2
+
+### Patch Changes
+
+-   0564e76: Fix wp_scripts plugin, props @Bernix01
+
 ## 0.9.1
 
 ### Patch Changes
