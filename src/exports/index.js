@@ -34,7 +34,7 @@ export function v4wp( options = {} ) {
 		name: 'v4wp:config',
 		enforce: 'pre',
 
-		config() {
+		config( config ) {
 			return {
 				base: './',
 				build: {
@@ -43,7 +43,7 @@ export function v4wp( options = {} ) {
 					manifest: 'manifest.json',
 					modulePreload: false,
 					rollupOptions: { input },
-					sourcemap: true,
+					sourcemap: config.build?.sourcemap ?? true,
 				},
 				css: {
 					devSourcemap: true,
