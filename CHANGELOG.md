@@ -1,5 +1,12 @@
 # @kucrut/vite-for-wp
 
+## 0.9.3
+
+### Patch Changes
+
+-   3b9edd7: Exclude unnecessary files from git archive
+-   c40e329: Respect build.sourcemap option, props @ernilambar
+
 ## 0.9.2
 
 ### Patch Changes
