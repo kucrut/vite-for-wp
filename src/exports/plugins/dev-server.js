@@ -72,7 +72,7 @@ export function dev_server( options = {} ) {
 		},
 
 		buildStart() {
-			const { base, build, plugins, server } = resolved_config;
+			const { base, build, plugins, server, root } = resolved_config;
 
 			const data = JSON.stringify( {
 				base,
@@ -81,7 +81,8 @@ export function dev_server( options = {} ) {
 				plugins: plugins_to_check.filter( i => plugins.some( ( { name } ) => name === i ) ),
 			} );
 
-			const manifest_dir = options.manifest_dir || build.outDir;
+			const buildDir = root.replace(/\/+$/, '') + '/' + build.outDir.replace(/^\/+/, '');
+			const manifest_dir = options.manifest_dir || buildDir;
 			manifest_file = join( manifest_dir, 'vite-dev-server.json' );
 
 			mkdirSync( manifest_dir, { recursive: true } );
