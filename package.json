@@ -1,10 +1,10 @@
 {
 	"name": "@kucrut/vite-for-wp",
-	"version": "0.8.0",
+	"version": "0.9.3",
 	"description": "Vite integration for WordPress plugins and themes development.",
 	"author": "Dzikri Aziz",
 	"license": "MIT",
-	"packageManager": "pnpm@8.7.4",
+	"packageManager": "pnpm@9.4.0",
 	"type": "module",
 	"types": "types/index.d.ts",
 	"homepage": "https://github.com/kucrut/vite-for-wp",
@@ -20,23 +20,22 @@
 		"wordpress"
 	],
 	"devDependencies": {
-		"@changesets/cli": "^2.26.2",
-		"@types/node": "^20.8.6",
-		"@typescript-eslint/eslint-plugin": "^6.7.5",
-		"@typescript-eslint/parser": "^6.7.5",
-		"@wordpress/eslint-plugin": "^17.0.0",
-		"dts-buddy": "^0.2.5",
-		"eslint": "^8.51.0",
-		"eslint-plugin-prettier": "^5.0.1",
+		"@changesets/cli": "^2.27.5",
+		"@eslint/js": "^9.4.0",
+		"@types/node": "^20.14.2",
+		"dts-buddy": "^0.4.7",
+		"eslint": "^9.4.0",
+		"eslint-config-prettier": "^9.1.0",
+		"globals": "^15.4.0",
 		"prettier": "npm:wp-prettier@^3.0.3",
-		"rollup-plugin-external-globals": "^0.8.0",
-		"typescript": "^5.2.2",
-		"vite": "^4.4.11",
+		"rollup-plugin-external-globals": "^0.10.0",
+		"typescript": "^5.4.5",
+		"vite": "^5.3.0",
 		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependencies": {
-		"rollup-plugin-external-globals": "^0.8.0",
-		"vite": "^4.4.11",
+		"rollup-plugin-external-globals": "^0.10.0",
+		"vite": "^5.3.0",
 		"vite-plugin-external": "^4.0.1"
 	},
 	"peerDependenciesMeta": {
@@ -70,7 +69,7 @@
 		"access": "public"
 	},
 	"scripts": {
-		"eslint:check": "eslint --ext .cjs,.js,.ts .",
+		"eslint:check": "eslint .",
 		"generate:types": "node scripts/generate-types.js",
 		"lint": "npm run prettier:check && npm run eslint:check",
 		"prettier:check": "prettier --check .",

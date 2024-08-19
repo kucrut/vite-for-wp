@@ -34,16 +34,16 @@ export function v4wp( options = {} ) {
 		name: 'v4wp:config',
 		enforce: 'pre',
 
-		config() {
+		config( config ) {
 			return {
 				base: './',
 				build: {
 					outDir,
 					emptyOutDir: true,
-					manifest: true,
+					manifest: 'manifest.json',
 					modulePreload: false,
 					rollupOptions: { input },
-					sourcemap: true,
+					sourcemap: config.build?.sourcemap ?? true,
 				},
 				css: {
 					devSourcemap: true,

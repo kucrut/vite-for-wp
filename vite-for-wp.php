@@ -102,17 +102,24 @@ function filter_script_tag( string $handle ): void {
  * @param string $target_handle Handle of the script being targeted by the filter callback.
  * @param string $tag           Original script tag.
  * @param string $handle        Handle of the script that's currently being filtered.
+ * @param string $src           The sript src.
  *
  * @return string Script tag with attribute `type="module"` added.
  */
-function set_script_type_attribute( string $target_handle, string $tag, string $handle ): string {
+function set_script_type_attribute( string $target_handle, string $tag, string $handle, string $src ): string {
 	if ( $target_handle !== $handle ) {
 		return $tag;
 	}
 
 	$processor = new WP_HTML_Tag_Processor( $tag );
 
-	if ( $processor->next_tag( 'script' ) ) {
+	$script_found = false;
+
+	do {
+		$script_found = $processor->next_tag( 'script' );
+	} while ( $processor->get_attribute( 'src' ) !== $src );
+
+	if ( $script_found ) {
 		$processor->set_attribute( 'type', 'module' );
 	}
 
@@ -289,16 +296,27 @@ function load_production_asset( object $manifest, string $entry, array $options 
 		}
 	}
 
-	if ( ! empty( $item->css ) ) {
-		foreach ( $item->css as $index => $css_file_path ) {
-			$style_handle = "{$options['handle']}-{$index}";
+	if ( ! empty( $item->imports ) ) {
+		// Recursive inline function to deeply check for .css files.
+		$check_imports = function ( array $imports ) use ( &$check_imports, &$assets, $manifest, $url, $options ): void {
+			foreach ( $imports as $import ) {
+				$import_item = $manifest->data->{$import};
 
-			// Don't worry about browser caching as the version is embedded in the file name.
-			// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-			if ( wp_register_style( $style_handle, "{$url}/{$css_file_path}", $options['css-dependencies'], null, $options['css-media'] ) ) {
-				$assets['styles'][] = $style_handle;
+				if ( ! empty( $import_item->imports ) ) {
+					$check_imports( $import_item->imports );
+				}
+
+				if ( ! empty( $import_item->css ) ) {
+					register_stylesheets( $assets, $import_item->css, $url, $options );
+				}
 			}
-		}
+		};
+
+		$check_imports( $item->imports );
+	}
+
+	if ( ! empty( $item->css ) ) {
+		register_stylesheets( $assets, $item->css, $url, $options );
 	}
 
 	/**
@@ -312,6 +330,28 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	$assets = apply_filters( 'vite_for_wp__production_assets', $assets, $manifest, $entry, $options );
 
 	return $assets;
+}
+
+/**
+ * Register stylesheet assets to WordPress and saves stylesheet handles for later enqueuing
+ *
+ * @param array  $assets      Reference to registered assets.
+ * @param array  $stylesheets List of stylesheets to register.
+ * @param string $url         Base URL to asset.
+ * @param array  $options     Array of options.
+ */
+function register_stylesheets( array &$assets, array $stylesheets, string $url, array $options ): void {
+	foreach ( $stylesheets as $css_file_path ) {
+		$slug = strtolower( trim( preg_replace( '/[^A-Za-z0-9-]+/', '-', pathinfo( $css_file_path, PATHINFO_FILENAME ) ), '-' ) );
+		// Including a slug based on the actual css file in the handle ensures it wont be registered more than once.
+		$style_handle = "{$options['handle']}-{$slug}";
+
+		// Don't worry about browser caching as the version is embedded in the file name.
+		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+		if ( wp_register_style( $style_handle, "{$url}/{$css_file_path}", $options['css-dependencies'], null, $options['css-media'] ) ) {
+			$assets['styles'][] = $style_handle;
+		}
+	}
 }
 
 /**

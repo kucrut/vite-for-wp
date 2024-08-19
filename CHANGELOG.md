@@ -1,5 +1,36 @@
 # @kucrut/vite-for-wp
 
+## 0.9.3
+
+### Patch Changes
+
+-   3b9edd7: Exclude unnecessary files from git archive
+-   c40e329: Respect build.sourcemap option, props @ernilambar
+
+## 0.9.2
+
+### Patch Changes
+
+-   0564e76: Fix wp_scripts plugin, props @Bernix01
+
+## 0.9.1
+
+### Patch Changes
+
+-   86a8495: Fix peer dependencies
+
+## 0.9.0
+
+### Minor Changes
+
+-   d33de07: Support enqueuing split CSS chunks with multiple outputs. Props @netlas
+-   c4bc83a: Vite 5
+
+### Patch Changes
+
+-   6eb0bb8: ESLint 9
+-   b7b96a3: Fix script type modifier. Props @irshadahmad21
+
 ## 0.8.0
 
 ### Minor Changes

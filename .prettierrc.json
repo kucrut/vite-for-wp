@@ -9,7 +9,6 @@
 	"tabWidth": 4,
 	"trailingComma": "all",
 	"useTabs": true,
-	"plugins": [ "eslint-plugin-prettier" ],
 	"overrides": [
 		{
 			"files": [ "*.json" ],
