@@ -1,10 +1,10 @@
 declare module '@kucrut/vite-for-wp' {
 	export function v4wp(options?: V4wpOptions): Plugin;
 	export default function create_config(input: Input, out_dir: string, extra_config?: UserConfig): UserConfig;
-	export type UserConfig = import('vite').UserConfig;
-	export type Input = import('vite').ResolvedConfig['build']['rollupOptions']['input'];
-	export type OutDir = import('vite').ResolvedConfig['build']['outDir'];
-	export type Plugin = import('vite').PluginOption;
+	export type UserConfig = import("vite").UserConfig;
+	export type Input = import("vite").ResolvedConfig["build"]["rollupOptions"]["input"];
+	export type OutDir = import("vite").ResolvedConfig["build"]["outDir"];
+	export type Plugin = import("vite").PluginOption;
 	/**
 	 * v4wp options
 	 */
@@ -18,10 +18,12 @@ declare module '@kucrut/vite-for-wp' {
 		 */
 		outDir?: OutDir | undefined;
 	};
+
+	export {};
 }
 
 declare module '@kucrut/vite-for-wp/plugins' {
-	export function dev_server(options?: DevServerOptions): import('vite').Plugin;
+	export function dev_server(options?: DevServerOptions): import("vite").Plugin;
 	/**
 	 * Dev Server Options
 	 */
@@ -32,7 +34,7 @@ declare module '@kucrut/vite-for-wp/plugins' {
 		manifest_dir?: string | undefined;
 	};
 	export function wp_scripts(options?: WPScriptsOptions): Plugin;
-	type Plugin = import('vite').PluginOption;
+	type Plugin = import("vite").PluginOption;
 	/**
 	 * WPScriptsOptions
 	 */
@@ -44,6 +46,8 @@ declare module '@kucrut/vite-for-wp/plugins' {
 			[k: string]: string;
 		} | undefined;
 	};
+
+	export {};
 }
 
 declare module '@kucrut/vite-for-wp/utils' {
@@ -63,6 +67,8 @@ declare module '@kucrut/vite-for-wp/utils' {
 		port?: number | undefined;
 	};
 	export function wp_globals(): Record<string, string>;
+
+	export {};
 }
 
 //# sourceMappingURL=index.d.ts.map
