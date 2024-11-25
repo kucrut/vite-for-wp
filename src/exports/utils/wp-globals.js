@@ -76,8 +76,9 @@ export function wp_globals() {
 
 	return {
 		...otherModules,
-		...Object.fromEntries(
-			wpModules.map( handle => [ `@wordpress/${ handle }`, `wp.${ camel_case_dash( handle ) }` ] ),
-		),
+		...Object.fromEntries( wpModules.map( handle => [
+			`@wordpress/${ handle }`,
+			`wp.${ camel_case_dash( handle ) }`,
+		] ) ),
 	};
 }
