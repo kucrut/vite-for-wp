@@ -67,9 +67,9 @@
 		"access": "public"
 	},
 	"scripts": {
-		"eslint:check": "eslint .",
+		"eslint": "eslint .",
 		"generate:types": "node scripts/generate-types.js",
-		"lint": "npm run eslint:check",
+		"lint": "npm run eslint",
 		"release": "changeset publish"
 	}
 }
