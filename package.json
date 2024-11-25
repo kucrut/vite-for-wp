@@ -72,7 +72,7 @@
 	"scripts": {
 		"eslint": "eslint .",
 		"generate:types": "node scripts/generate-types.js",
-		"lint": "npm run eslint",
+		"lint": "pnpm run eslint",
 		"release": "changeset publish"
 	}
 }
