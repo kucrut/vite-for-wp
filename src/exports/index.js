@@ -70,6 +70,7 @@ export function v4wp( options = {} ) {
  */
 export default function create_config( input, out_dir, extra_config ) {
 	createLogger().warnOnce(
+		// eslint-disable-next-line @stylistic/max-len
 		'[Vite for WP]: create_config() is deprecated and will be removed in version 1.0. Please use the `v4wp` plugin instead.',
 		{ clear: false },
 	);

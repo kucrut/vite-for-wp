@@ -1,13 +1,13 @@
 import { camel_case_dash } from './camel-case-dash.js';
 
 /**
- * Get all global variables registered by WordPress
+ * Get all global scripts registered by WordPress
  *
  * @type {() => Record<string, string>}
- * @return {Record<string, string>} Object containing global variable names registered by WordPress.
+ * @return {Record<string, string>} Object containing global script names registered by WordPress.
  */
 export function wp_globals() {
-	const wpModules = [
+	const wp_modules = [
 		'a11y',
 		'annotations',
 		'api-fetch',
@@ -64,7 +64,7 @@ export function wp_globals() {
 		'wordcount',
 	];
 
-	const otherModules = {
+	const other_modules = {
 		'jquery': 'jQuery',
 		'tinymce': 'tinymce',
 		'moment': 'moment',
@@ -75,9 +75,10 @@ export function wp_globals() {
 	};
 
 	return {
-		...otherModules,
-		...Object.fromEntries(
-			wpModules.map( handle => [ `@wordpress/${ handle }`, `wp.${ camel_case_dash( handle ) }` ] ),
-		),
+		...other_modules,
+		...Object.fromEntries( wp_modules.map( handle => [
+			`@wordpress/${ handle }`,
+			`wp.${ camel_case_dash( handle ) }`,
+		] ) ),
 	};
 }
