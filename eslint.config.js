@@ -7,6 +7,7 @@ export default [
 	...configs.js,
 	{
 		rules: {
+			'@stylistic/max-len': [ 'error', { code: 120, ignoreComments: true } ],
 			'@typescript-eslint/no-unused-vars': 'off',
 		},
 	},
