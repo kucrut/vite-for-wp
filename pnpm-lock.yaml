@@ -42,7 +42,7 @@ importers:
         specifier: ^8.15.0
         version: 8.15.0(eslint@9.15.0)(typescript@5.5.4)
       vite:
-        specifier: ^5.3.0
+        specifier: ^5.4.11
         version: 5.4.11(@types/node@22.9.3)
       vite-plugin-external:
         specifier: ^4.0.1
