@@ -1,0 +1,22 @@
+{
+	// Disable the default formatter, use eslint instead.
+	"prettier.enable": false,
+	"editor.formatOnSave": false,
+
+	// Auto fix.
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "never"
+	},
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"json",
+		"jsonc",
+		"markdown",
+		"typescript",
+		"typescriptreact",
+		"xml",
+		"yaml"
+	]
+}
