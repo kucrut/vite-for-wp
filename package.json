@@ -69,8 +69,7 @@
 	"scripts": {
 		"eslint:check": "eslint .",
 		"generate:types": "node scripts/generate-types.js",
-		"lint": "npm run prettier:check && npm run eslint:check",
-		"prettier:check": "prettier --check .",
+		"lint": "npm run eslint:check",
 		"release": "changeset publish"
 	}
 }
