@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.10.0
+
+### Minor Changes
+
+- fc9ad64: Vite 6
+
 ## 0.9.4
 
 ### Patch Changes
