@@ -66,7 +66,7 @@ export function dev_server( options = {} ) {
 
       		const finalOrigin =
 				typeof origin === 'string'
-				? origin
+				? normalizeOriginWithPort(origin, port)
 				: `${server_protocol}://${host}:${port}`
 
 			// Use user-defined values if they exist, otherwise use the defaults
@@ -142,4 +142,36 @@ async function is_port_in_use(port, host = '127.0.0.1') {
 		
 		server.listen(port, host);
 	});
+}
+
+/**
+ * Check origin validity and add port if missing.
+ * Ensures the origin does not end with a slash.
+ * @author David Mussard <david.mussard@gmail.com>
+ *
+ * @param {string} origin - The origin to normalize
+ * @param {number} port - The port to add if missing
+ * @returns {string} - The normalized origin
+ */
+function normalizeOriginWithPort(origin, port) {
+	try {
+		const url = new URL(origin);
+		// If the URL has no port, add the one provided
+		if (!url.port) {
+			url.port = port;
+		}
+		
+		let normalizedOrigin = url.toString();
+		
+		// Remove trailing slash if it exists
+		if (normalizedOrigin.endsWith('/')) {
+			normalizedOrigin = normalizedOrigin.slice(0, -1);
+		}
+		
+		return normalizedOrigin;
+	} catch (err) {
+		// If the URL is invalid, return it as is
+		console.warn(`Invalid origin URL: ${origin}`);
+		return origin;
+	}
 }
