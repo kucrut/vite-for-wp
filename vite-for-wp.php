@@ -231,13 +231,9 @@ function load_development_asset( object $manifest, string $entry, array $options
 
 	$src = generate_development_asset_src( $manifest, $entry );
 
-	filter_script_tag( $options['handle'] );
-
 	// This is a development script, browsers shouldn't cache it.
 	// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-	if ( ! wp_register_script( $options['handle'], $src, $dependencies, null, $options['in-footer'] ) ) {
-		return null;
-	}
+	wp_register_script_module( $options['handle'], $src, $dependencies, null );
 
 	$assets = [
 		'scripts' => [ $options['handle'] ],
@@ -287,13 +283,11 @@ function load_production_asset( object $manifest, string $entry, array $options 
 	$src = "{$url}/{$item->file}";
 
 	if ( ! $options['css-only'] ) {
-		filter_script_tag( $options['handle'] );
-
 		// Don't worry about browser caching as the version is embedded in the file name.
 		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-		if ( wp_register_script( $options['handle'], $src, $options['dependencies'], null, $options['in-footer'] ) ) {
-			$assets['scripts'][] = $options['handle'];
-		}
+		wp_register_script_module( $options['handle'], $src, $options['dependencies'], null );
+
+		$assets['scripts'][] = $options['handle'];
 	}
 
 	if ( ! empty( $item->imports ) ) {
@@ -370,7 +364,6 @@ function parse_options( array $options ): array {
 		'css-only' => false,
 		'dependencies' => [],
 		'handle' => '',
-		'in-footer' => false,
 	];
 
 	return wp_parse_args( $options, $defaults );
@@ -456,7 +449,7 @@ function enqueue_asset( string $manifest_dir, string $entry, array $options ): b
 	}
 
 	$map = [
-		'scripts' => 'wp_enqueue_script',
+		'scripts' => 'wp_enqueue_script_module',
 		'styles' => 'wp_enqueue_style',
 	];
 
