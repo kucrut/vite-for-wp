@@ -134,10 +134,10 @@ You can now run `npm run dev` when developing your plugin/theme and run `npm run
 
 ### External Dependencies
 
-If your package depends on one or more scripts registered by WordPress (eg. `jquery`, `react`, `@wordpress/i18n`, etc.) and you want to exclude them from the final build, add `wp_scripts()` to the list of Vite's plugins. But first, install the required dependencies:
+If your package depends on one or more scripts registered by WordPress (eg. `jquery`, `react`, `@wordpress/i18n`, etc.) and you want to exclude them from the final build, add `wp_scripts()` to the list of Vite's plugins. But first, install the required dependency:
 
 ```sh
-npm add -D rollup-plugin-external-globals vite-plugin-external
+npm add -D rollup-plugin-external-globals
 ```
 
 For example, to externalise `react` and `react-dom` packages:
