@@ -1,5 +1,16 @@
 # @kucrut/vite-for-wp
 
+## 0.11.0
+
+### Minor Changes
+
+- b1e4f21: Fix wp_scripts plugin
+
+### Patch Changes
+
+- 6111279: Update dependencies (20250310)
+- 89ff79c: Update GH actions to use the latest versions
+
 ## 0.10.0
 
 ### Minor Changes
