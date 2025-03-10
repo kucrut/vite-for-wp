@@ -23,8 +23,7 @@ import { wp_globals } from '../utils/wp-globals.js';
  * @return {Promise<Plugin>} Vite plugins objects.
  */
 export async function wp_scripts( options = {} ) {
-	const { default: externals } = await import( 'vite-plugin-external' );
-	const { default: globals } = await import( 'rollup-plugin-external-globals' );
+	const { default: external_globals } = await import( 'rollup-plugin-external-globals' );
 
 	const { extraScripts = {} } = options;
 
@@ -54,9 +53,6 @@ export async function wp_scripts( options = {} ) {
 
 	return [
 		plugin,
-		externals( {
-			externals: scripts,
-		} ),
-		globals( scripts ),
+		external_globals( scripts ),
 	];
 }
