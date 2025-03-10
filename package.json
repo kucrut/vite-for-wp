@@ -4,7 +4,7 @@
 	"description": "Vite integration for WordPress plugins and themes development.",
 	"author": "Dzikri Aziz",
 	"license": "MIT",
-	"packageManager": "pnpm@10.6.1",
+	"packageManager": "pnpm@10.6.2",
 	"type": "module",
 	"types": "types/index.d.ts",
 	"homepage": "https://github.com/kucrut/vite-for-wp",
