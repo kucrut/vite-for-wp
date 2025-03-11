@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.11.1
+
+### Patch Changes
+
+- b188938: Fix wp_scripts on dev mode
+
 ## 0.11.0
 
 ### Minor Changes
