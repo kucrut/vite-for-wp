@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.11.2
+
+### Patch Changes
+
+- 27da37f: Update readme
+
 ## 0.11.1
 
 ### Patch Changes
