@@ -18,6 +18,7 @@ import { wp_globals } from '../utils/wp-globals.js';
  * @since 0.7.0
  * @since 0.8.0  Import dependencies dynamically.
  * @since 0.11.0 Remove vite-plugin-external dependency.
+ * @since 0.11.1 Bring back vite-plugin-external dependency with proper args.
  *
  * @type {(options?: WPScriptsOptions) => Plugin}
  * @param {WPScriptsOptions} options Plugin options.
@@ -25,6 +26,7 @@ import { wp_globals } from '../utils/wp-globals.js';
  */
 export async function wp_scripts( options = {} ) {
 	const { default: external_globals } = await import( 'rollup-plugin-external-globals' );
+	const { default: externals } = await import( 'vite-plugin-external' );
 
 	const { extraScripts = {} } = options;
 
@@ -55,5 +57,7 @@ export async function wp_scripts( options = {} ) {
 	return [
 		plugin,
 		external_globals( scripts ),
+		// @ts-expect-error Upstream issue.
+		externals( { development: { externals: scripts } } ),
 	];
 }
