@@ -2,19 +2,35 @@
 	"version": 3,
 	"file": "index.d.ts",
 	"names": [
-		"UserConfig",
+		"v4wp",
 		"Input",
-		"OutDir",
-		"Plugin"
+		"V4wpOptions",
+		"dev_server",
+		"wp_scripts",
+		"DevServerOptions",
+		"camel_case_dash",
+		"choose_port",
+		"wp_globals",
+		"ChoosePortOptions"
 	],
 	"sources": [
 		"../src/exports/index.js",
-		"../src/exports/plugins/wp-scripts.js"
+		"../src/types.ts",
+		"../src/exports/plugins/dev-server.js",
+		"../src/exports/plugins/wp-scripts.js",
+		"../src/exports/utils/camel-case-dash.js",
+		"../src/exports/utils/choose-port.js",
+		"../src/exports/utils/wp-globals.js"
 	],
 	"sourcesContent": [
 		null,
+		null,
+		null,
+		null,
+		null,
+		null,
 		null
 	],
-	"mappings": ";;;aAG6BA,UAAUA;aACyCC,KAAKA;aACrBC,MAAMA;aAC3BC,MAAMA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MCJNA,MAAMA",
+	"mappings": ";;;;;;;;;;;;iBAagBA,IAAIA;;;;;;;;;;;;;MCXRC,KAAKA;WAsBAC,WAAWA;;;;;;;;;;;;;;;;;;;;;;;;iBCXZC,UAAUA;;;;;;;;;;;;;;;;;;iBCUJC,UAAUA;;;;;;;;;;;;WFNfC,gBAAgBA;;;;;;;;;;;;;;;;;iBGXjBC,eAAeA;;;;;;;;;iBCITC,WAAWA;;;;;;iBCHjBC,UAAUA;WLHTC,iBAAiBA",
 	"ignoreList": []
 }

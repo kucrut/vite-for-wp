@@ -1,7 +1,6 @@
 /**
  * Given a kebab-case string, returns a new camelCase string.
  *
- * @type {(str: string) => string}
  * @param {string} str Input kebab-case string.
  * @return {string} Camel-cased string.
  */

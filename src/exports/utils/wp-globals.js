@@ -3,7 +3,6 @@ import { camel_case_dash } from './camel-case-dash.js';
 /**
  * Get all global scripts registered by WordPress
  *
- * @type {() => Record<string, string>}
  * @return {Record<string, string>} Object containing global script names registered by WordPress.
  */
 export function wp_globals() {

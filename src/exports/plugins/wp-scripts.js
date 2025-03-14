@@ -1,7 +1,5 @@
 import { wp_globals } from '../utils/wp-globals.js';
 
-/** @typedef {import('vite').PluginOption} Plugin */
-
 /**
  * WPScriptsOptions
  *
@@ -20,9 +18,8 @@ import { wp_globals } from '../utils/wp-globals.js';
  * @since 0.11.0 Remove vite-plugin-external dependency.
  * @since 0.11.1 Bring back vite-plugin-external dependency with proper args.
  *
- * @type {(options?: WPScriptsOptions) => Plugin}
  * @param {WPScriptsOptions} options Plugin options.
- * @return {Promise<Plugin>} Vite plugins objects.
+ * @return {Promise<import('vite').PluginOption[]>} Vite plugins objects.
  */
 export async function wp_scripts( options = {} ) {
 	const { default: external_globals } = await import( 'rollup-plugin-external-globals' );
@@ -35,7 +32,7 @@ export async function wp_scripts( options = {} ) {
 		...extraScripts,
 	};
 
-	/** @type {Plugin} */
+	/** @type {import('vite').Plugin<WPScriptsOptions>} */
 	const plugin = {
 		name: 'v4wp:wp-scripts',
 		apply: 'build',
