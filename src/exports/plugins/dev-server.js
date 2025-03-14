@@ -3,21 +3,13 @@ import { join } from 'node:path';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 
 /**
- * Dev Server Options
- *
- * @typedef DevServerOptions
- *
- * @property {string=} manifest_dir Path to directory where the dev server manifest should be stored. Defaults to the value of `build.outDir` option.
- */
-
-/**
  * Dev server plugin
  *
  * @since 0.1.0
  * @since 0.8.0 Accept options.
  *
- * @param {DevServerOptions=} options Plugin options.
- * @return {import('vite').Plugin<DevServerOptions>} Plugin object.
+ * @param {import('../../types.ts').DevServerOptions=} options Plugin options.
+ * @return {import('vite').Plugin<import('../../types.ts').DevServerOptions>} Plugin object.
  */
 export function dev_server( options = {} ) {
 	const plugins_to_check = [ 'vite:react-refresh' ];

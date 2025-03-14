@@ -15,6 +15,13 @@ export interface ChoosePortOptions {
 	port?: number
 }
 
+export interface DevServerOptions {
+	/**
+	 * @description Path to directory where the dev server manifest should be stored. Defaults to the value of `build.outDir` option.
+	 */
+	manifest_dir?: string;
+}
+
 export interface V4wpOptions {
 	/**
 	 * @description Entry points (optional, defaults to 'src/main.js'). See https://rollupjs.org/configuration-options/#input
