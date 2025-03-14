@@ -75,6 +75,7 @@ export function wp_globals() {
 		'tinymce': 'tinymce',
 		'moment': 'moment',
 		'react': 'React',
+		'react/jsx-runtime': 'ReactJSXRuntime',
 		'react-dom': 'ReactDOM',
 		'backbone': 'Backbone',
 		'lodash': 'lodash',
