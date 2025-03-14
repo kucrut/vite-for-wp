@@ -16,10 +16,8 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
  * @since 0.1.0
  * @since 0.8.0 Accept options.
  *
- * @type {(options?: DevServerOptions) => import('vite').Plugin}
- *
  * @param {DevServerOptions=} options Plugin options.
- * @return {import('vite').Plugin} Plugin object.
+ * @return {import('vite').Plugin<DevServerOptions>} Plugin object.
  */
 export function dev_server( options = {} ) {
 	const plugins_to_check = [ 'vite:react-refresh' ];
