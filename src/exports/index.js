@@ -4,7 +4,6 @@ import { dev_server } from './plugins/dev-server.js';
 /** @typedef {import('vite').UserConfig} UserConfig */
 /** @typedef {import('vite').ResolvedConfig['build']['rollupOptions']['input']} Input */
 /** @typedef {import('vite').ResolvedConfig['build']['outDir']} OutDir */
-/** @typedef {import('vite').PluginOption} Plugin */
 
 /**
  * v4wp options
@@ -22,14 +21,13 @@ import { dev_server } from './plugins/dev-server.js';
  *
  * @since 0.7.0
  *
- * @type {(options?: V4wpOptions) => Plugin}
  * @param {V4wpOptions=} options Plugin options (optional).
- * @return {Plugin} Vite plugin objects.
+ * @return {import('vite').PluginOption[]} Vite plugin objects.
  */
 export function v4wp( options = {} ) {
 	const { input, outDir } = options;
 
-	/** @type {Plugin} */
+	/** @type {import('vite').Plugin} */
 	const plugin = {
 		name: 'v4wp:config',
 		enforce: 'pre',
@@ -59,8 +57,6 @@ export function v4wp( options = {} ) {
  * Create vite config
  *
  * @deprecated Use v4wp() instead.
- *
- * @type {(input: Input, out_dir: string, extra_config?: UserConfig) => UserConfig}
  *
  * @param {Input}       input        Entry points. See https://rollupjs.org/configuration-options/#input
  * @param {string}      out_dir      Output directory. See https://vitejs.dev/config/build-options.html#build-outdir
