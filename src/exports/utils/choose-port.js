@@ -6,7 +6,7 @@ import { createServer } from 'net';
  * @typedef ChoosePortOptions
  *
  * @property {string=} [host=localhost] Host name or IP address, defaults to 'localhost'.
- * @property {number=} [port=5173]      Preferred port number, defaults to 5173
+ * @property {number=} [port=5173]      Preferred port number, defaults to 5173.
  */
 
 /**
@@ -14,7 +14,6 @@ import { createServer } from 'net';
  *
  * Stolen from vite.
  *
- * @type {(options: ChoosePortOptions) => Promise<number>}
  * @param {ChoosePortOptions} options Options.
  * @return {Promise<number>}  Chosen port.
  */
