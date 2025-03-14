@@ -41,10 +41,7 @@ export async function wp_scripts( options = {} ) {
 			return {
 				build: {
 					rollupOptions: {
-						external: [
-							...Object.keys( scripts ),
-							'react/jsx-runtime',
-						],
+						external: Object.keys( scripts ),
 						output: {
 							globals: scripts,
 						},
