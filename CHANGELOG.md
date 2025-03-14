@@ -1,5 +1,13 @@
 # @kucrut/vite-for-wp
 
+## 0.11.3
+
+### Patch Changes
+
+- 96ed25c: Externalise react/jsx-runtime
+- d4bf568: Update wp-globals
+- 4191c01: Clean-up typings
+
 ## 0.11.2
 
 ### Patch Changes
