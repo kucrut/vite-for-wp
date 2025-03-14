@@ -155,9 +155,7 @@ export default {
 			outDir: 'js/dist',
 		} ),
 		wp_scripts(),
-		react( {
-			jsxRuntime: 'classic',
-		} ),
+		react(),
 	],
 };
 ```
