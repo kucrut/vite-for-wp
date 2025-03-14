@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.11.4
+
+### Patch Changes
+
+- 8892f2a: wp_scripts: Fix externalised jsx-runtime
+
 ## 0.11.3
 
 ### Patch Changes
