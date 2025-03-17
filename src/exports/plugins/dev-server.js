@@ -1,6 +1,7 @@
 import { choose_port } from '../utils/choose-port.js';
 import { join } from 'node:path';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import net from 'node:net';
 
 /**
  * Dev server plugin
@@ -22,9 +23,16 @@ export function dev_server( options = {} ) {
 		apply: 'serve',
 		name: 'v4wp:dev-server',
 
-		async config( config ) {
-			const { server = {} } = config;
-			let { host = 'localhost', port = 5173, ...server_config } = server;
+		async config( userConfig ) {
+			const userServer = userConfig.server ?? {}
+
+			let {
+				host = 'localhost',
+				port = 5173,
+				origin,            // If origin is not set, it will be generated from host and port
+				hmr: userHmr = {},
+				...server_config   // https, headers, strictPort, etc.
+			} = userServer
 
 			// We need actual host name or IP address for choose_port() to work.
 			if ( typeof host === 'boolean' ) {
@@ -34,25 +42,39 @@ export function dev_server( options = {} ) {
 			const hmr_protocol = server_config.https ? 'wss' : 'ws';
 			const server_protocol = server_config.https ? 'https' : 'http';
 
-			// Ensure chosen port is available because we need to enable strictPort below.
-			// If the chosen port is already in use, a free one will be selected.
-			port = await choose_port( { host, port } );
+			// Check if strictPort is enabled and if the chosen port is already in use.
+			if (server_config.strictPort) {
+				const inUse = await is_port_in_use(port, host);
+				if (inUse) {
+					throw new Error(`Port ${port} already in use on ${host}`);
+				}
+			} else {
+				// Ensure chosen port is available because we need to enable strictPort below.
+				// If the chosen port is already in use, a free one will be selected.
+				port = await choose_port( { host, port } );
+			}
 
-			// This will be used by the PHP helper.
-			const origin = `${ server_protocol }://${ host }:${ port }`;
+      		const finalOrigin =
+				typeof origin === 'string'
+				? normalizeOriginWithPort(origin, port)
+				: `${server_protocol}://${host}:${port}`
+
+			// Use user-defined values if they exist, otherwise use the defaults
+			const finalHmr = {
+				...userHmr,
+				port: userHmr.port ?? port,
+				host: userHmr.host ?? host,
+				protocol: userHmr.protocol ?? hmr_protocol,
+			}
 
 			return {
 				server: {
 					...server_config,
 					host,
-					origin,
+					origin: finalOrigin,
 					port,
 					strictPort: true,
-					hmr: {
-						port,
-						host,
-						protocol: hmr_protocol,
-					},
+					hmr: finalHmr,
 				},
 			};
 		},
@@ -82,4 +104,64 @@ export function dev_server( options = {} ) {
 			rmSync( manifest_file, { force: true } );
 		},
 	};
+}
+
+/**
+ * Check if port is busy.
+ * @author David Mussard <david.mussard@gmail.com>
+ * @param {number} port
+ * @param {string} host
+ * @returns {Promise<boolean>}
+ */
+async function is_port_in_use(port, host = '127.0.0.1') {
+	return new Promise((resolve) => {
+		const server = net.createServer();
+		
+		server.once('error', (err) => {
+			if (err.code === 'EADDRINUSE') {
+				resolve(true);  // Port is busy
+			} else {
+				resolve(false);
+			}
+		});
+		
+		server.once('listening', () => {
+			server.close();
+			resolve(false);  // Port is free
+		});
+		
+		server.listen(port, host);
+	});
+}
+
+/**
+ * Check origin validity and add port if missing.
+ * Ensures the origin does not end with a slash.
+ * @author David Mussard <david.mussard@gmail.com>
+ *
+ * @param {string} origin - The origin to normalize
+ * @param {number} port - The port to add if missing
+ * @returns {string} - The normalized origin
+ */
+function normalizeOriginWithPort(origin, port) {
+	try {
+		const url = new URL(origin);
+		// If the URL has no port, add the one provided
+		if (!url.port) {
+			url.port = port;
+		}
+		
+		let normalizedOrigin = url.toString();
+		
+		// Remove trailing slash if it exists
+		if (normalizedOrigin.endsWith('/')) {
+			normalizedOrigin = normalizedOrigin.slice(0, -1);
+		}
+		
+		return normalizedOrigin;
+	} catch (err) {
+		// If the URL is invalid, return it as is
+		console.warn(`Invalid origin URL: ${origin}`);
+		return origin;
+	}
 }
