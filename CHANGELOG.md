@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.11.5
+
+### Patch Changes
+
+- 9cbd76f: Update JS dependencies
+
 ## 0.11.4
 
 ### Patch Changes
