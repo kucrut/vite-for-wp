@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.11.6
+
+### Patch Changes
+
+- cea3aff: Update dependencies
+
 ## 0.11.5
 
 ### Patch Changes
