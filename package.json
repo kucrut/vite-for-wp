@@ -20,24 +20,24 @@
 		"wordpress"
 	],
 	"devDependencies": {
-		"@changesets/cli": "^2.29.2",
-		"@eslint/js": "^9.25.1",
+		"@changesets/cli": "^2.29.4",
+		"@eslint/js": "^9.27.0",
 		"@kucrut/eslint-config": "^0.3.3",
 		"@types/eslint": "^9.6.1",
-		"@types/node": "^22.14.1",
+		"@types/node": "^22.15.21",
 		"dts-buddy": "^0.6.1",
-		"eslint": "^9.25.1",
-		"globals": "^16.0.0",
+		"eslint": "^9.27.0",
+		"globals": "^16.1.0",
 		"rollup-plugin-external-globals": "^0.13.0",
 		"typescript": "~5.8.3",
-		"typescript-eslint": "^8.31.0",
-		"vite": "^6.3.2",
-		"vite-plugin-external": "^6.2.1"
+		"typescript-eslint": "^8.32.1",
+		"vite": "^6.3.5",
+		"vite-plugin-external": "^6.2.2"
 	},
 	"peerDependencies": {
 		"rollup-plugin-external-globals": "^0.13.0",
-		"vite": "^6.2.2",
-		"vite-plugin-external": "^6.0.1"
+		"vite": "^6.3.5",
+		"vite-plugin-external": "^6.2.2"
 	},
 	"peerDependenciesMeta": {
 		"rollup-plugin-external-globals": {
