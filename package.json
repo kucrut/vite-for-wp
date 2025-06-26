@@ -70,6 +70,7 @@
 		"access": "public"
 	},
 	"scripts": {
+		"check": "tsc --noEmit",
 		"eslint": "eslint .",
 		"generate:types": "node scripts/generate-types.js",
 		"lint": "pnpm run eslint",
