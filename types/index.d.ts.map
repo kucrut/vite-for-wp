@@ -3,6 +3,7 @@
 	"file": "index.d.ts",
 	"names": [
 		"v4wp",
+		"create_config",
 		"Input",
 		"V4wpOptions",
 		"dev_server",
@@ -31,6 +32,6 @@
 		null,
 		null
 	],
-	"mappings": ";;;;;;;;;;;;iBAagBA,IAAIA;;;;;;;;;;;;;MCXRC,KAAKA;WAsBAC,WAAWA;;;;;;;;;;;;;;;;;;;;;;;;iBCXZC,UAAUA;;;;;;;;;;;;;;;;;;iBCUJC,UAAUA;;;;;;;;;;;;WFNfC,gBAAgBA;;;;;;;;;;;;;;;;;iBGXjBC,eAAeA;;;;;;;;;iBCITC,WAAWA;;;;;;iBCHjBC,UAAUA;WLHTC,iBAAiBA",
+	"mappings": ";;;;;;;;;;;;iBAagBA,IAAIA;;;;;;;;;;;;yBAwCIC,aAAaA;MCnDzBC,KAAKA;WAsBAC,WAAWA;;;;;;;;;;;;;;;;;;;;;;;;iBCXZC,UAAUA;;;;;;;;;;;;;;;;;;iBCUJC,UAAUA;;;;;;;;;;;;WFNfC,gBAAgBA;;;;;;;;;;;;;;;;;iBGXjBC,eAAeA;;;;;;;;;iBCITC,WAAWA;;;;;;iBCHjBC,UAAUA;WLHTC,iBAAiBA",
 	"ignoreList": []
 }
