@@ -1,5 +1,11 @@
 # @kucrut/vite-for-wp
 
+## 0.12.0
+
+### Minor Changes
+
+- ed33fdb: Vite 7
+
 ## 0.11.6
 
 ### Patch Changes
