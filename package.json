@@ -20,7 +20,7 @@
 		"wordpress"
 	],
 	"devDependencies": {
-		"@changesets/cli": "^2.29.4",
+		"@changesets/cli": "^2.29.5",
 		"@eslint/js": "^9.29.0",
 		"@kucrut/eslint-config": "^0.3.3",
 		"@types/eslint": "^9.6.1",
