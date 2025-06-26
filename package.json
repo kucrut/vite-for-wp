@@ -31,12 +31,12 @@
 		"rollup-plugin-external-globals": "^0.13.0",
 		"typescript": "~5.8.3",
 		"typescript-eslint": "^8.32.1",
-		"vite": "^6.3.5",
+		"vite": "^7.0.0",
 		"vite-plugin-external": "^6.2.2"
 	},
 	"peerDependencies": {
 		"rollup-plugin-external-globals": "^0.13.0",
-		"vite": "^6.3.5",
+		"vite": "^7.0.0",
 		"vite-plugin-external": "^6.2.2"
 	},
 	"peerDependenciesMeta": {
